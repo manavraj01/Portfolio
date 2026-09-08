@@ -87,6 +87,50 @@
     });
   });
 
+  /* ---------------- architecture modal ---------------- */
+  const archModal = document.getElementById('archModal');
+  const archModalTitle = document.getElementById('archModalTitle');
+  const archModalTag = document.getElementById('archModalTag');
+  const archModalBody = document.getElementById('archModalBody');
+  const catLabels = { backend: 'Backend & Enterprise', cloud: 'Cloud & Systems', ml: 'Machine Learning', genai: 'Generative AI' };
+  let lastFocused = null;
+
+  function openArch(key, title, category) {
+    const tpl = document.getElementById('tpl-arch-' + key);
+    if (!tpl || !archModal) return;
+    archModalBody.innerHTML = '';
+    archModalBody.appendChild(tpl.content.cloneNode(true));
+    archModalTitle.textContent = title;
+    archModalTag.textContent = catLabels[category] || 'Architecture';
+    archModalTag.className = 'modal-eyebrow cat-' + category;
+    lastFocused = document.activeElement;
+    archModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    archModal.querySelector('.modal-close').focus();
+  }
+
+  function closeArch() {
+    if (!archModal) return;
+    archModal.classList.remove('open');
+    document.body.style.overflow = '';
+    if (lastFocused) lastFocused.focus();
+  }
+
+  document.querySelectorAll('[data-arch]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest('.project-card');
+      const title = card ? card.querySelector('.project-title').textContent : '';
+      const category = card ? card.dataset.category : '';
+      openArch(btn.dataset.arch, title, category);
+    });
+  });
+
+  if (archModal) {
+    archModal.addEventListener('click', (e) => { if (e.target === archModal) closeArch(); });
+    archModal.querySelector('.modal-close').addEventListener('click', closeArch);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && archModal.classList.contains('open')) closeArch(); });
+  }
+
   /* ---------------- hero role rotator ---------------- */
   const roles = [
     'scalable backend systems',

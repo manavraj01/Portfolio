@@ -12,6 +12,14 @@
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <marker id="archArrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path class="arch-arrowhead" d="M0,0 L10,5 L0,10 z"/>
+    </marker>
+  </defs>
+</svg>
+
 <div class="bg-glow"></div>
 <div class="bg-grid"></div>
 
@@ -25,6 +33,7 @@
       <a href="#education" class="nav-link">Education</a>
       <a href="#projects" class="nav-link">Projects</a>
       <a href="#skills" class="nav-link">Skills</a>
+      <a href="#growth" class="nav-link">Growth</a>
       <a href="#contact" class="nav-link">Contact</a>
     </nav>
     <div class="nav-actions">
@@ -242,16 +251,19 @@
           <div class="card-visual viz-backend">
             <span class="card-cat-tag">Backend</span>
             <svg viewBox="0 0 300 148" preserveAspectRatio="xMidYMid meet">
-              <rect class="node" x="14" y="58" width="56" height="26" rx="5"/>
-              <text class="node-label" x="42" y="90" text-anchor="middle">Client</text>
-              <rect class="node" x="122" y="58" width="56" height="26" rx="5"/>
+              <rect class="node" x="10" y="58" width="60" height="26" rx="5"/>
+              <text class="node-label" x="40" y="90" text-anchor="middle">Client</text>
+              <rect class="node" x="120" y="58" width="60" height="26" rx="5"/>
               <text class="node-label" x="150" y="90" text-anchor="middle">Spring API</text>
-              <rect class="node" x="230" y="58" width="56" height="26" rx="5"/>
-              <text class="node-label" x="258" y="90" text-anchor="middle">Oracle DB</text>
-              <path class="path" d="M70 71 H122"/>
-              <path class="path" d="M178 71 H230"/>
+              <rect class="node" x="230" y="58" width="60" height="26" rx="5"/>
+              <text class="node-label" x="260" y="90" text-anchor="middle">Oracle DB</text>
+              <rect class="node" x="120" y="112" width="60" height="26" rx="5"/>
+              <text class="node-label" x="150" y="132" text-anchor="middle">Payments</text>
+              <path class="path" d="M70 71 H120"/>
+              <path class="path" d="M180 71 H230"/>
+              <path class="path" d="M150 84 V112"/>
               <circle class="pulse" r="3">
-                <animateMotion dur="2.6s" repeatCount="indefinite" path="M70 71 H286" />
+                <animateMotion dur="2.6s" repeatCount="indefinite" path="M70 71 H290" />
               </circle>
             </svg>
           </div>
@@ -270,6 +282,10 @@
             </p>
             <div class="project-links">
               <span class="project-status"><span class="dot"></span>In development</span>
+              <button class="btn-arch" data-arch="ordermgmt">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                Architecture
+              </button>
             </div>
           </div>
         </article>
@@ -279,16 +295,19 @@
           <div class="card-visual viz-backend">
             <span class="card-cat-tag">Backend</span>
             <svg viewBox="0 0 300 148" preserveAspectRatio="xMidYMid meet">
-              <rect class="node" x="14" y="58" width="56" height="26" rx="5"/>
-              <text class="node-label" x="42" y="90" text-anchor="middle">JDBC</text>
-              <rect class="node" x="122" y="58" width="56" height="26" rx="5"/>
+              <rect class="node" x="10" y="58" width="60" height="26" rx="5"/>
+              <text class="node-label" x="40" y="90" text-anchor="middle">JDBC</text>
+              <rect class="node" x="120" y="58" width="60" height="26" rx="5"/>
               <text class="node-label" x="150" y="90" text-anchor="middle">Warehouse</text>
-              <rect class="node" x="230" y="58" width="56" height="26" rx="5"/>
-              <text class="node-label" x="258" y="90" text-anchor="middle">PL/SQL</text>
-              <path class="path" d="M70 71 H122"/>
-              <path class="path" d="M178 71 H230"/>
+              <rect class="node" x="230" y="58" width="60" height="26" rx="5"/>
+              <text class="node-label" x="260" y="90" text-anchor="middle">PL/SQL</text>
+              <rect class="node" x="230" y="112" width="60" height="26" rx="5"/>
+              <text class="node-label" x="260" y="132" text-anchor="middle">Alert</text>
+              <path class="path" d="M70 71 H120"/>
+              <path class="path" d="M180 71 H230"/>
+              <path class="path" d="M260 84 V112"/>
               <circle class="pulse" r="3">
-                <animateMotion dur="2.6s" repeatCount="indefinite" path="M286 71 H70" />
+                <animateMotion dur="2.6s" repeatCount="indefinite" path="M290 71 H70" />
               </circle>
             </svg>
           </div>
@@ -305,6 +324,10 @@
             </p>
             <div class="project-links">
               <span class="project-status"><span class="dot"></span>In development</span>
+              <button class="btn-arch" data-arch="inventory">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                Architecture
+              </button>
             </div>
           </div>
         </article>
@@ -314,16 +337,19 @@
           <div class="card-visual viz-backend">
             <span class="card-cat-tag">Backend</span>
             <svg viewBox="0 0 300 148" preserveAspectRatio="xMidYMid meet">
-              <rect class="node" x="14" y="58" width="56" height="26" rx="5"/>
-              <text class="node-label" x="42" y="90" text-anchor="middle">Ticket</text>
-              <rect class="node" x="122" y="58" width="56" height="26" rx="5"/>
+              <rect class="node" x="10" y="58" width="60" height="26" rx="5"/>
+              <text class="node-label" x="40" y="90" text-anchor="middle">Ticket</text>
+              <rect class="node" x="120" y="58" width="60" height="26" rx="5"/>
               <text class="node-label" x="150" y="90" text-anchor="middle">SLA Timer</text>
-              <rect class="node" x="230" y="58" width="56" height="26" rx="5"/>
-              <text class="node-label" x="258" y="90" text-anchor="middle">Dashboard</text>
-              <path class="path" d="M70 71 H122"/>
-              <path class="path" d="M178 71 H230"/>
+              <rect class="node" x="230" y="58" width="60" height="26" rx="5"/>
+              <text class="node-label" x="260" y="90" text-anchor="middle">Dashboard</text>
+              <rect class="node" x="120" y="112" width="60" height="26" rx="5"/>
+              <text class="node-label" x="150" y="132" text-anchor="middle">Escalate</text>
+              <path class="path" d="M70 71 H120"/>
+              <path class="path" d="M180 71 H230"/>
+              <path class="path" d="M150 84 V112"/>
               <circle class="pulse" r="3">
-                <animateMotion dur="2.6s" repeatCount="indefinite" path="M70 71 H286" />
+                <animateMotion dur="2.6s" repeatCount="indefinite" path="M70 71 H290" />
               </circle>
             </svg>
           </div>
@@ -341,6 +367,10 @@
             </p>
             <div class="project-links">
               <span class="project-status"><span class="dot"></span>In development</span>
+              <button class="btn-arch" data-arch="ticketing">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                Architecture
+              </button>
             </div>
           </div>
         </article>
@@ -389,37 +419,34 @@
             </p>
             <div class="project-links">
               <span class="project-status"><span class="dot"></span>In development</span>
+              <button class="btn-arch" data-arch="netmon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                Architecture
+              </button>
             </div>
           </div>
         </article>
 
         <!-- 5: System Health & Traceability -->
         <article class="project-card show" data-category="cloud">
-          <div class="card-visual viz-cloud">
+          <div class="card-visual viz-matrix">
             <span class="card-cat-tag">Cloud &amp; Systems</span>
             <svg viewBox="0 0 300 148" preserveAspectRatio="xMidYMid meet">
-              <circle class="ring r1" cx="150" cy="60" r="8"/>
-              <circle class="ring r2" cx="150" cy="60" r="8"/>
-              <circle class="ring r3" cx="150" cy="60" r="8"/>
-              <line class="link" x1="150" y1="60" x2="80" y2="30"/>
-              <line class="link" x1="150" y1="60" x2="220" y2="30"/>
-              <line class="link" x1="150" y1="60" x2="80" y2="90"/>
-              <line class="link" x1="150" y1="60" x2="220" y2="90"/>
-              <circle class="hub" cx="150" cy="60" r="9"/>
-              <circle class="satellite" cx="80" cy="30" r="5"/>
-              <circle class="satellite" cx="220" cy="30" r="5"/>
-              <circle class="satellite" cx="80" cy="90" r="5"/>
-              <circle class="satellite" cx="220" cy="90" r="5"/>
-              <g transform="translate(100,118)">
-                <rect class="bar" x="0" y="0" width="6" height="18" style="animation-delay:.2s"/>
-                <rect class="bar" x="12" y="0" width="6" height="18" style="animation-delay:.35s"/>
-                <rect class="bar" x="24" y="0" width="6" height="18" style="animation-delay:.5s"/>
-                <rect class="bar" x="36" y="0" width="6" height="18" style="animation-delay:.65s"/>
-                <rect class="bar" x="48" y="0" width="6" height="18" style="animation-delay:.8s"/>
-                <rect class="bar" x="60" y="0" width="6" height="18" style="animation-delay:.95s"/>
-                <rect class="bar" x="72" y="0" width="6" height="18" style="animation-delay:1.1s"/>
-                <rect class="bar" x="84" y="0" width="6" height="18" style="animation-delay:1.25s"/>
-              </g>
+              <rect class="cell hit" x="20" y="18" width="26" height="16" rx="2"/>
+              <rect class="cell" x="52" y="18" width="26" height="16" rx="2"/>
+              <rect class="cell hit" x="84" y="18" width="26" height="16" rx="2"/>
+              <rect class="cell hit" x="116" y="18" width="26" height="16" rx="2"/>
+              <rect class="cell" x="148" y="18" width="26" height="16" rx="2"/>
+              <rect class="cell hit" x="180" y="18" width="26" height="16" rx="2"/>
+              <rect class="cell" x="212" y="18" width="26" height="16" rx="2"/>
+              <rect class="cell" x="20" y="42" width="26" height="16" rx="2"/>
+              <rect class="cell hit" x="52" y="42" width="26" height="16" rx="2"/>
+              <rect class="cell hit" x="84" y="42" width="26" height="16" rx="2"/>
+              <rect class="cell" x="116" y="42" width="26" height="16" rx="2"/>
+              <rect class="cell hit" x="148" y="42" width="26" height="16" rx="2"/>
+              <rect class="cell hit" x="180" y="42" width="26" height="16" rx="2"/>
+              <rect class="cell" x="212" y="42" width="26" height="16" rx="2"/>
+              <polyline class="health-line" points="20,120 55,108 90,124 125,98 160,114 195,92 230,106 255,100" />
             </svg>
           </div>
           <div class="project-body">
@@ -437,6 +464,10 @@
             </p>
             <div class="project-links">
               <span class="project-status"><span class="dot"></span>In development</span>
+              <button class="btn-arch" data-arch="syshealth">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                Architecture
+              </button>
             </div>
           </div>
         </article>
@@ -446,15 +477,28 @@
           <div class="card-visual viz-ml">
             <span class="card-cat-tag">ML</span>
             <svg viewBox="0 0 300 148" preserveAspectRatio="xMidYMid meet">
-              <line class="grid-line" x1="20" y1="30" x2="280" y2="30"/>
-              <line class="grid-line" x1="20" y1="65" x2="280" y2="65"/>
-              <line class="grid-line" x1="20" y1="100" x2="280" y2="100"/>
-              <polyline class="actual-line" points="24,95 55,80 86,88 117,60 148,70 179,42 210,55" />
-              <polyline class="forecast-line" points="210,55 240,48 271,35" />
-              <circle class="pt" cx="24" cy="95" r="3"/><circle class="pt" cx="55" cy="80" r="3"/>
-              <circle class="pt" cx="86" cy="88" r="3"/><circle class="pt" cx="117" cy="60" r="3"/>
-              <circle class="pt" cx="148" cy="70" r="3"/><circle class="pt" cx="179" cy="42" r="3"/>
-              <circle class="pt" cx="210" cy="55" r="3"/>
+              <line class="grid-line" x1="20" y1="20" x2="280" y2="20"/>
+              <line class="grid-line" x1="20" y1="50" x2="280" y2="50"/>
+              <polyline class="actual-line" points="24,72 55,58 86,64 117,40 148,48 179,25 210,36" />
+              <polyline class="forecast-line" points="210,36 240,30 271,18" />
+              <circle class="pt" cx="24" cy="72" r="3"/><circle class="pt" cx="55" cy="58" r="3"/>
+              <circle class="pt" cx="86" cy="64" r="3"/><circle class="pt" cx="117" cy="40" r="3"/>
+              <circle class="pt" cx="148" cy="48" r="3"/><circle class="pt" cx="179" cy="25" r="3"/>
+              <circle class="pt" cx="210" cy="36" r="3"/>
+              <g transform="translate(20,96)">
+                <rect class="reorder-bar" x="0" y="0" width="14" height="22" rx="2" style="transition-delay:.5s"/>
+                <rect class="reorder-bar" x="22" y="6" width="14" height="16" rx="2" style="transition-delay:.56s"/>
+                <rect class="reorder-bar" x="44" y="2" width="14" height="20" rx="2" style="transition-delay:.62s"/>
+                <rect class="reorder-bar" x="66" y="10" width="14" height="12" rx="2" style="transition-delay:.68s"/>
+                <rect class="reorder-bar" x="88" y="4" width="14" height="18" rx="2" style="transition-delay:.74s"/>
+                <rect class="reorder-bar" x="110" y="8" width="14" height="14" rx="2" style="transition-delay:.8s"/>
+                <rect class="reorder-bar" x="132" y="0" width="14" height="22" rx="2" style="transition-delay:.86s"/>
+                <rect class="reorder-bar" x="154" y="6" width="14" height="16" rx="2" style="transition-delay:.92s"/>
+                <rect class="reorder-bar" x="176" y="3" width="14" height="19" rx="2" style="transition-delay:.98s"/>
+                <rect class="reorder-bar" x="198" y="9" width="14" height="13" rx="2" style="transition-delay:1.04s"/>
+                <rect class="reorder-bar" x="220" y="1" width="14" height="21" rx="2" style="transition-delay:1.1s"/>
+                <rect class="reorder-bar" x="242" y="7" width="14" height="15" rx="2" style="transition-delay:1.16s"/>
+              </g>
             </svg>
           </div>
           <div class="project-body">
@@ -472,6 +516,10 @@
             </p>
             <div class="project-links">
               <span class="project-status"><span class="dot"></span>In development</span>
+              <button class="btn-arch" data-arch="grocery">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                Architecture
+              </button>
             </div>
           </div>
         </article>
@@ -508,24 +556,32 @@
                 View Code
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
               </a>
+              <button class="btn-arch" data-arch="rossmann">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                Architecture
+              </button>
             </div>
           </div>
         </article>
 
         <!-- 8: NYC Taxi (existing, real links) -->
         <article class="project-card show" data-category="ml">
-          <div class="card-visual viz-ml">
+          <div class="card-visual viz-scatter">
             <span class="card-cat-tag">ML</span>
             <svg viewBox="0 0 300 148" preserveAspectRatio="xMidYMid meet">
-              <line class="grid-line" x1="20" y1="30" x2="280" y2="30"/>
-              <line class="grid-line" x1="20" y1="65" x2="280" y2="65"/>
-              <line class="grid-line" x1="20" y1="100" x2="280" y2="100"/>
-              <polyline class="actual-line" points="24,90 55,95 86,72 117,80 148,55 179,64 210,45" />
-              <polyline class="forecast-line" points="210,45 240,50 271,32" />
-              <circle class="pt" cx="24" cy="90" r="3"/><circle class="pt" cx="55" cy="95" r="3"/>
-              <circle class="pt" cx="86" cy="72" r="3"/><circle class="pt" cx="117" cy="80" r="3"/>
-              <circle class="pt" cx="148" cy="55" r="3"/><circle class="pt" cx="179" cy="64" r="3"/>
-              <circle class="pt" cx="210" cy="45" r="3"/>
+              <line class="axis" x1="30" y1="18" x2="30" y2="122"/>
+              <line class="axis" x1="30" y1="122" x2="272" y2="122"/>
+              <line class="fit-line" x1="36" y1="112" x2="256" y2="26"/>
+              <circle class="sc-pt" cx="52" cy="106" r="4"/>
+              <circle class="sc-pt" cx="75" cy="90" r="4"/>
+              <circle class="sc-pt" cx="98" cy="85" r="4"/>
+              <circle class="sc-pt" cx="120" cy="72" r="4"/>
+              <circle class="sc-pt" cx="140" cy="68" r="4"/>
+              <circle class="sc-pt" cx="162" cy="58" r="4"/>
+              <circle class="sc-pt" cx="183" cy="52" r="4"/>
+              <circle class="sc-pt" cx="205" cy="40" r="4"/>
+              <circle class="sc-pt" cx="225" cy="36" r="4"/>
+              <circle class="sc-pt" cx="248" cy="30" r="4"/>
             </svg>
           </div>
           <div class="project-body">
@@ -548,24 +604,29 @@
                 Backend
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
               </a>
+              <button class="btn-arch" data-arch="nyctaxi">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                Architecture
+              </button>
             </div>
           </div>
         </article>
 
         <!-- 9: Telco Churn (existing, real links) -->
         <article class="project-card show" data-category="ml">
-          <div class="card-visual viz-ml">
+          <div class="card-visual viz-donut">
             <span class="card-cat-tag">ML</span>
             <svg viewBox="0 0 300 148" preserveAspectRatio="xMidYMid meet">
-              <line class="grid-line" x1="20" y1="30" x2="280" y2="30"/>
-              <line class="grid-line" x1="20" y1="65" x2="280" y2="65"/>
-              <line class="grid-line" x1="20" y1="100" x2="280" y2="100"/>
-              <polyline class="actual-line" points="24,100 55,85 86,90 117,62 148,68 179,45 210,52" />
-              <polyline class="forecast-line" points="210,52 240,44 271,30" />
-              <circle class="pt" cx="24" cy="100" r="3"/><circle class="pt" cx="55" cy="85" r="3"/>
-              <circle class="pt" cx="86" cy="90" r="3"/><circle class="pt" cx="117" cy="62" r="3"/>
-              <circle class="pt" cx="148" cy="68" r="3"/><circle class="pt" cx="179" cy="45" r="3"/>
-              <circle class="pt" cx="210" cy="52" r="3"/>
+              <g transform="translate(88,74) rotate(-90)">
+                <circle class="donut-track" cx="0" cy="0" r="35"/>
+                <circle class="donut-arc" cx="0" cy="0" r="35"/>
+              </g>
+              <text class="donut-label" x="88" y="71" text-anchor="middle">73%</text>
+              <text class="donut-sub" x="88" y="84" text-anchor="middle">RETAINED</text>
+              <circle class="legend-dot" cx="184" cy="58" r="5" style="fill:var(--c-ml)"/>
+              <text class="legend-text" x="196" y="62">Retained</text>
+              <circle class="legend-dot" cx="184" cy="82" r="5" style="fill:var(--border-strong)"/>
+              <text class="legend-text" x="196" y="86">At churn risk</text>
             </svg>
           </div>
           <div class="project-body">
@@ -587,6 +648,10 @@
                 App
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
               </a>
+              <button class="btn-arch" data-arch="telcochurn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                Architecture
+              </button>
             </div>
           </div>
         </article>
@@ -626,6 +691,10 @@
             </p>
             <div class="project-links">
               <span class="project-status"><span class="dot"></span>In development</span>
+              <button class="btn-arch" data-arch="genai">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                Architecture
+              </button>
             </div>
           </div>
         </article>
@@ -719,6 +788,50 @@
     </div>
   </section>
 
+  <!-- GROWTH: coding practice + learning log -->
+  <section id="growth">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Growth</span>
+        <h2>Daily practice &amp; continuous learning</h2>
+        <p>Problems I'm solving and what I'm reading, kept current as I go.</p>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Coding Practice</h3>
+        <div class="practice-grid reveal-group">
+          <div class="leetcode-card reveal">
+            <div class="leetcode-mark">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4L7 12l8 8M7 12h13"/></svg>
+            </div>
+            <h3>LeetCode Profile</h3>
+            <div class="handle" id="leetcodeHandle">Profile link coming soon</div>
+            <div class="leetcode-empty" id="leetcodeEmpty">
+              LeetCode username not connected yet — once added, this card will link straight to
+              the profile and show a live solved-problems stats card.
+            </div>
+          </div>
+
+          <div class="log-list reveal" id="logList">
+            <div class="log-empty-state">
+              Daily solve log coming soon — problem name, difficulty, and the key takeaway from
+              each session will appear here as I work through them.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Currently Learning</h3>
+        <div class="learning-list reveal-group" id="learningList">
+          <div class="log-empty-state reveal">
+            What I'm reading and the key takeaways will show up here as I go.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CONTACT -->
   <section id="contact">
     <div class="container">
@@ -764,6 +877,454 @@
   </section>
 
 </main>
+
+<!-- ARCHITECTURE MODAL -->
+<div class="modal-overlay" id="archModal" role="dialog" aria-modal="true" aria-labelledby="archModalTitle">
+  <div class="modal-panel">
+    <div class="modal-header">
+      <div>
+        <div class="modal-eyebrow" id="archModalTag">Architecture</div>
+        <h3 class="modal-title" id="archModalTitle">System Architecture</h3>
+      </div>
+      <button class="modal-close" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="modal-body" id="archModalBody"></div>
+  </div>
+</div>
+
+<!-- ARCHITECTURE DIAGRAM TEMPLATES -->
+
+<template id="tpl-arch-ordermgmt">
+  <div class="arch-diagram-wrap">
+    <svg viewBox="0 0 720 300">
+      <rect class="arch-node cat-backend" x="20" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="95" y="54" text-anchor="middle">Client</text>
+      <text class="arch-node-sub" x="95" y="70" text-anchor="middle">Web / Admin UI</text>
+
+      <rect class="arch-node cat-backend" x="285" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="360" y="54" text-anchor="middle">Spring Boot API</text>
+      <text class="arch-node-sub" x="360" y="70" text-anchor="middle">Order · Inventory · Payment</text>
+
+      <rect class="arch-node cat-backend" x="550" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="625" y="54" text-anchor="middle">Oracle DB</text>
+      <text class="arch-node-sub" x="625" y="70" text-anchor="middle">Hibernate / JPA</text>
+
+      <rect class="arch-node cat-backend" x="20" y="190" width="150" height="56"/>
+      <text class="arch-node-title" x="95" y="214" text-anchor="middle">Admin Dashboard</text>
+      <text class="arch-node-sub" x="95" y="230" text-anchor="middle">Status &amp; reporting</text>
+
+      <rect class="arch-node cat-backend" x="550" y="190" width="150" height="56"/>
+      <text class="arch-node-title" x="625" y="214" text-anchor="middle">Logging</text>
+      <text class="arch-node-sub" x="625" y="230" text-anchor="middle">SLF4J / Log4j</text>
+
+      <path class="arch-edge" d="M170,58 H285" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="227" y="50" text-anchor="middle">REST</text>
+      <path class="arch-edge" d="M435,58 H550" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="492" y="50" text-anchor="middle">JDBC</text>
+      <path class="arch-edge dashed" d="M95,190 V86" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="102" y="140">admin ops</text>
+      <path class="arch-edge dashed" d="M625,86 V190" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="632" y="140">log events</text>
+    </svg>
+  </div>
+  <p class="modal-desc">
+    A layered Spring Boot service exposes order, inventory, and payment REST endpoints behind a
+    single API surface. Hibernate/JPA maps requests onto a normalized Oracle schema, while the
+    admin dashboard reuses the same API for status updates and reporting, and structured logging
+    traces failures back to their originating request.
+  </p>
+</template>
+
+<template id="tpl-arch-inventory">
+  <div class="arch-diagram-wrap">
+    <svg viewBox="0 0 720 300">
+      <rect class="arch-node cat-backend" x="20" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="95" y="54" text-anchor="middle">Warehouse Terminal</text>
+      <text class="arch-node-sub" x="95" y="70" text-anchor="middle">Per-location client</text>
+
+      <rect class="arch-node cat-backend" x="285" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="360" y="54" text-anchor="middle">Core Java App</text>
+      <text class="arch-node-sub" x="360" y="70" text-anchor="middle">Config-driven registry</text>
+
+      <rect class="arch-node cat-backend" x="550" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="625" y="54" text-anchor="middle">Oracle DB</text>
+      <text class="arch-node-sub" x="625" y="70" text-anchor="middle">Stock tables</text>
+
+      <rect class="arch-node cat-backend" x="550" y="190" width="150" height="56"/>
+      <text class="arch-node-title" x="625" y="214" text-anchor="middle">PL/SQL Trigger</text>
+      <text class="arch-node-sub" x="625" y="230" text-anchor="middle">Reorder threshold check</text>
+
+      <rect class="arch-node cat-backend" x="285" y="190" width="150" height="56"/>
+      <text class="arch-node-title" x="360" y="214" text-anchor="middle">Low-Stock Alert</text>
+      <text class="arch-node-sub" x="360" y="230" text-anchor="middle">Notify operators</text>
+
+      <path class="arch-edge" d="M170,58 H285" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="227" y="50" text-anchor="middle">JDBC</text>
+      <path class="arch-edge" d="M435,58 H550" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="492" y="50" text-anchor="middle">update stock</text>
+      <path class="arch-edge" d="M625,86 V190" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="632" y="140">on insert/update</text>
+      <path class="arch-edge dashed" d="M550,218 H435" marker-end="url(#archArrow)"/>
+      <path class="arch-edge dashed" d="M285,218 H170 V86" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="102" y="140">notify</text>
+    </svg>
+  </div>
+  <p class="modal-desc">
+    Each warehouse instance talks to a shared Oracle backend over JDBC through a
+    configuration-driven registry, so new locations plug in without code changes. Stock updates
+    fire PL/SQL triggers that evaluate reorder thresholds and push low-stock alerts back out to
+    warehouse operators.
+  </p>
+</template>
+
+<template id="tpl-arch-ticketing">
+  <div class="arch-diagram-wrap">
+    <svg viewBox="0 0 720 300">
+      <rect class="arch-node cat-backend" x="20" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="95" y="54" text-anchor="middle">Agent / Supervisor UI</text>
+      <text class="arch-node-sub" x="95" y="70" text-anchor="middle">React, role-based</text>
+
+      <rect class="arch-node cat-backend" x="285" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="360" y="54" text-anchor="middle">Spring Boot API</text>
+      <text class="arch-node-sub" x="360" y="70" text-anchor="middle">RBAC · ticket lifecycle</text>
+
+      <rect class="arch-node cat-backend" x="550" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="625" y="54" text-anchor="middle">Oracle DB</text>
+      <text class="arch-node-sub" x="625" y="70" text-anchor="middle">Tickets · SLA state</text>
+
+      <rect class="arch-node cat-backend" x="550" y="190" width="150" height="56"/>
+      <text class="arch-node-title" x="625" y="214" text-anchor="middle">SLA Timer Job</text>
+      <text class="arch-node-sub" x="625" y="230" text-anchor="middle">Scheduled evaluation</text>
+
+      <rect class="arch-node cat-backend" x="285" y="190" width="150" height="56"/>
+      <text class="arch-node-title" x="360" y="214" text-anchor="middle">Breach Alert</text>
+      <text class="arch-node-sub" x="360" y="230" text-anchor="middle">Escalation &amp; daily report</text>
+
+      <path class="arch-edge" d="M170,58 H285" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="227" y="50" text-anchor="middle">REST</text>
+      <path class="arch-edge" d="M435,58 H550" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="492" y="50" text-anchor="middle">persist</text>
+      <path class="arch-edge" d="M625,86 V190" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="632" y="140">reads open tickets</text>
+      <path class="arch-edge dashed" d="M550,218 H435" marker-end="url(#archArrow)"/>
+      <path class="arch-edge dashed" d="M285,218 H170 V86" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="100" y="140">escalate</text>
+    </svg>
+  </div>
+  <p class="modal-desc">
+    Role-based REST endpoints drive the ticket lifecycle from Open through Closed, persisted in
+    Oracle. A scheduled job continuously evaluates SLA timers against open tickets, escalating
+    breaches and rolling up daily summary metrics back to supervisors.
+  </p>
+</template>
+
+<template id="tpl-arch-netmon">
+  <div class="arch-diagram-wrap">
+    <svg viewBox="0 0 720 300">
+      <rect class="arch-node cat-cloud" x="20" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="95" y="54" text-anchor="middle">Ansible Control Node</text>
+      <text class="arch-node-sub" x="95" y="70" text-anchor="middle">Playbooks</text>
+
+      <rect class="arch-node cat-cloud" x="285" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="360" y="54" text-anchor="middle">Managed Hosts</text>
+      <text class="arch-node-sub" x="360" y="70" text-anchor="middle">Simulated multi-node fleet</text>
+
+      <rect class="arch-node cat-cloud" x="550" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="625" y="54" text-anchor="middle">Diagnostics</text>
+      <text class="arch-node-sub" x="625" y="70" text-anchor="middle">Interface · latency · loss</text>
+
+      <rect class="arch-node cat-cloud" x="285" y="190" width="150" height="56"/>
+      <text class="arch-node-title" x="360" y="214" text-anchor="middle">SNMP Polling Agent</text>
+      <text class="arch-node-sub" x="360" y="230" text-anchor="middle">Python</text>
+
+      <rect class="arch-node cat-cloud" x="550" y="190" width="150" height="56"/>
+      <text class="arch-node-title" x="625" y="214" text-anchor="middle">Alerting Module</text>
+      <text class="arch-node-sub" x="625" y="230" text-anchor="middle">Threshold breach notify</text>
+
+      <path class="arch-edge" d="M170,58 H285" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="227" y="50" text-anchor="middle">config push</text>
+      <path class="arch-edge" d="M435,58 H550" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="492" y="50" text-anchor="middle">runs checks</text>
+      <path class="arch-edge dashed" d="M360,190 V86" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="368" y="140">polled</text>
+      <path class="arch-edge" d="M435,218 H550" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="492" y="210" text-anchor="middle">metrics</text>
+    </svg>
+  </div>
+  <p class="modal-desc">
+    Ansible playbooks push configuration changes out to the managed Linux fleet, while a Python
+    polling agent independently walks each host over SNMP. Diagnostics scripts sample interface
+    status, latency, and packet loss; the agent's readings flow into an alerting module that fires
+    when device-health thresholds are breached.
+  </p>
+</template>
+
+<template id="tpl-arch-syshealth">
+  <div class="arch-diagram-wrap">
+    <svg viewBox="0 0 720 300">
+      <rect class="arch-node cat-cloud" x="20" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="95" y="54" text-anchor="middle">Linux Host</text>
+      <text class="arch-node-sub" x="95" y="70" text-anchor="middle">/proc · systemd · journalctl</text>
+
+      <rect class="arch-node cat-cloud" x="285" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="360" y="54" text-anchor="middle">Bash Collectors</text>
+      <text class="arch-node-sub" x="360" y="70" text-anchor="middle">Cron-scheduled</text>
+
+      <rect class="arch-node cat-cloud" x="550" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="625" y="54" text-anchor="middle">SQLite DB</text>
+      <text class="arch-node-sub" x="625" y="70" text-anchor="middle">Metrics + traceability</text>
+
+      <rect class="arch-node cat-cloud" x="550" y="190" width="150" height="56"/>
+      <text class="arch-node-title" x="625" y="214" text-anchor="middle">Traceability Model</text>
+      <text class="arch-node-sub" x="625" y="230" text-anchor="middle">Req → design → tests</text>
+
+      <rect class="arch-node cat-cloud" x="285" y="190" width="150" height="56"/>
+      <text class="arch-node-title" x="360" y="214" text-anchor="middle">Flask Dashboard</text>
+      <text class="arch-node-sub" x="360" y="230" text-anchor="middle">Stakeholder view</text>
+
+      <path class="arch-edge" d="M170,58 H285" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="227" y="50" text-anchor="middle">collect</text>
+      <path class="arch-edge" d="M435,58 H550" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="492" y="50" text-anchor="middle">write</text>
+      <path class="arch-edge" d="M625,86 V190" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="632" y="140">links</text>
+      <path class="arch-edge dashed" d="M550,218 H435" marker-end="url(#archArrow)"/>
+      <path class="arch-edge dashed" d="M360,190 V86" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="368" y="140">reads</text>
+    </svg>
+  </div>
+  <p class="modal-desc">
+    Cron-scheduled Bash scripts collect OS-level metrics from /proc, systemd, and journalctl into
+    SQLite alongside a requirements-to-design-to-test traceability model. A lightweight Flask app
+    reads both tables to render system health and requirement-coverage status for stakeholders.
+  </p>
+</template>
+
+<template id="tpl-arch-grocery">
+  <div class="arch-diagram-wrap">
+    <svg viewBox="0 0 720 300">
+      <rect class="arch-node cat-ml" x="20" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="95" y="54" text-anchor="middle">Retail Schema</text>
+      <text class="arch-node-sub" x="95" y="70" text-anchor="middle">Products · Sales · Stores</text>
+
+      <rect class="arch-node cat-ml" x="285" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="360" y="54" text-anchor="middle">Feature Engineering</text>
+      <text class="arch-node-sub" x="360" y="70" text-anchor="middle">Lags · rolling avg · promo</text>
+
+      <rect class="arch-node cat-ml" x="550" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="625" y="54" text-anchor="middle">Forecast Model</text>
+      <text class="arch-node-sub" x="625" y="70" text-anchor="middle">XGBoost / Prophet</text>
+
+      <rect class="arch-node cat-ml" x="550" y="190" width="150" height="56"/>
+      <text class="arch-node-title" x="625" y="214" text-anchor="middle">Reorder Engine</text>
+      <text class="arch-node-sub" x="625" y="230" text-anchor="middle">Reorder-point calc</text>
+
+      <rect class="arch-node cat-ml" x="285" y="190" width="150" height="56"/>
+      <text class="arch-node-title" x="360" y="214" text-anchor="middle">Streamlit Dashboard</text>
+      <text class="arch-node-sub" x="360" y="230" text-anchor="middle">Drift monitoring</text>
+
+      <path class="arch-edge" d="M170,58 H285" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="227" y="50" text-anchor="middle">SQL joins</text>
+      <path class="arch-edge" d="M435,58 H550" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="492" y="50" text-anchor="middle">train</text>
+      <path class="arch-edge" d="M625,86 V190" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="632" y="140">forecast</text>
+      <path class="arch-edge dashed" d="M550,218 H435" marker-end="url(#archArrow)"/>
+      <path class="arch-edge dashed" d="M360,190 V86" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="368" y="140">drift check</text>
+    </svg>
+  </div>
+  <p class="modal-desc">
+    SQL joins across products, sales, inventory, and stores feed a Pandas feature pipeline that
+    engineers lags, rolling averages, and promotion flags. The trained forecasting model's output
+    drives a reorder-point engine, both surfaced in a Streamlit dashboard that tracks forecast
+    drift against actuals.
+  </p>
+</template>
+
+<template id="tpl-arch-rossmann">
+  <div class="arch-diagram-wrap">
+    <svg viewBox="0 0 720 300">
+      <rect class="arch-node cat-ml" x="20" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="95" y="54" text-anchor="middle">Historical Sales</text>
+      <text class="arch-node-sub" x="95" y="70" text-anchor="middle">Store-level data</text>
+
+      <rect class="arch-node cat-ml" x="285" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="360" y="54" text-anchor="middle">Feature Engineering</text>
+      <text class="arch-node-sub" x="360" y="70" text-anchor="middle">Seasonality · promotions</text>
+
+      <rect class="arch-node cat-ml" x="550" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="625" y="54" text-anchor="middle">XGBoost Ensemble</text>
+      <text class="arch-node-sub" x="625" y="70" text-anchor="middle">Hyperparameter tuned</text>
+
+      <rect class="arch-node cat-ml" x="285" y="190" width="150" height="56"/>
+      <text class="arch-node-title" x="360" y="214" text-anchor="middle">Evaluation</text>
+      <text class="arch-node-sub" x="360" y="230" text-anchor="middle">Holdout / cross-val</text>
+
+      <rect class="arch-node cat-ml" x="550" y="190" width="150" height="56"/>
+      <text class="arch-node-title" x="625" y="214" text-anchor="middle">Forecast Report</text>
+      <text class="arch-node-sub" x="625" y="230" text-anchor="middle">Per-store predictions</text>
+
+      <path class="arch-edge" d="M170,58 H285" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="227" y="50" text-anchor="middle">engineer</text>
+      <path class="arch-edge" d="M435,58 H550" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="492" y="50" text-anchor="middle">train</text>
+      <path class="arch-edge" d="M625,86 V190" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="632" y="140">validate</text>
+      <path class="arch-edge" d="M550,218 H435" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="492" y="210" text-anchor="middle">compile</text>
+    </svg>
+  </div>
+  <p class="modal-desc">
+    Historical sales, seasonality, and promotional signals are engineered into features and passed
+    through a tuned XGBoost ensemble. Predictions are validated against a holdout set before being
+    compiled into per-store sales forecasts.
+  </p>
+</template>
+
+<template id="tpl-arch-nyctaxi">
+  <div class="arch-diagram-wrap">
+    <svg viewBox="0 0 720 300">
+      <rect class="arch-node cat-ml" x="20" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="95" y="54" text-anchor="middle">Raw Trip Data</text>
+      <text class="arch-node-sub" x="95" y="70" text-anchor="middle">Historical rides</text>
+
+      <rect class="arch-node cat-ml" x="285" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="360" y="54" text-anchor="middle">Preprocessing</text>
+      <text class="arch-node-sub" x="360" y="70" text-anchor="middle">Cleaning · encoding</text>
+
+      <rect class="arch-node cat-ml" x="550" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="625" y="54" text-anchor="middle">TensorFlow Training</text>
+      <text class="arch-node-sub" x="625" y="70" text-anchor="middle">Deep model</text>
+
+      <rect class="arch-node cat-ml" x="20" y="190" width="150" height="56"/>
+      <text class="arch-node-title" x="95" y="214" text-anchor="middle">Vue.js Client</text>
+      <text class="arch-node-sub" x="95" y="230" text-anchor="middle">Fare request UI</text>
+
+      <rect class="arch-node cat-ml" x="285" y="190" width="150" height="56"/>
+      <text class="arch-node-title" x="360" y="214" text-anchor="middle">Flask API</text>
+      <text class="arch-node-sub" x="360" y="230" text-anchor="middle">Inference endpoint</text>
+
+      <rect class="arch-node cat-ml" x="550" y="190" width="150" height="56"/>
+      <text class="arch-node-title" x="625" y="214" text-anchor="middle">Model Server</text>
+      <text class="arch-node-sub" x="625" y="230" text-anchor="middle">Served TF artifact</text>
+
+      <path class="arch-edge" d="M170,58 H285" marker-end="url(#archArrow)"/>
+      <path class="arch-edge" d="M435,58 H550" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="492" y="50" text-anchor="middle">train</text>
+      <path class="arch-edge dashed" d="M625,86 V190" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="632" y="140">deploy</text>
+      <path class="arch-edge" d="M170,218 H285" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="227" y="210" text-anchor="middle">request</text>
+      <path class="arch-edge" d="M435,218 H550" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="492" y="210" text-anchor="middle">predict</text>
+    </svg>
+  </div>
+  <p class="modal-desc">
+    An offline pipeline preprocesses raw trip data and trains a TensorFlow deep model; the
+    resulting artifact is deployed behind a Flask inference API. The Vue.js client sends fare
+    requests to Flask, which forwards them to the served model and returns predictions in real
+    time.
+  </p>
+</template>
+
+<template id="tpl-arch-telcochurn">
+  <div class="arch-diagram-wrap">
+    <svg viewBox="0 0 720 300">
+      <rect class="arch-node cat-ml" x="20" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="95" y="54" text-anchor="middle">Customer Data</text>
+      <text class="arch-node-sub" x="95" y="70" text-anchor="middle">Usage · billing · tenure</text>
+
+      <rect class="arch-node cat-ml" x="285" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="360" y="54" text-anchor="middle">Feature Engineering</text>
+      <text class="arch-node-sub" x="360" y="70" text-anchor="middle">Preprocessing</text>
+
+      <rect class="arch-node cat-ml" x="550" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="625" y="54" text-anchor="middle">Neural Classifier</text>
+      <text class="arch-node-sub" x="625" y="70" text-anchor="middle">Churn probability</text>
+
+      <rect class="arch-node cat-ml" x="550" y="190" width="150" height="56"/>
+      <text class="arch-node-title" x="625" y="214" text-anchor="middle">Model Artifact</text>
+      <text class="arch-node-sub" x="625" y="230" text-anchor="middle">Exported weights</text>
+
+      <rect class="arch-node cat-ml" x="285" y="190" width="150" height="56"/>
+      <text class="arch-node-title" x="360" y="214" text-anchor="middle">Streamlit App</text>
+      <text class="arch-node-sub" x="360" y="230" text-anchor="middle">Real-time risk scoring</text>
+
+      <rect class="arch-node cat-ml" x="20" y="190" width="150" height="56"/>
+      <text class="arch-node-title" x="95" y="214" text-anchor="middle">Retention Team</text>
+      <text class="arch-node-sub" x="95" y="230" text-anchor="middle">Business user</text>
+
+      <path class="arch-edge" d="M170,58 H285" marker-end="url(#archArrow)"/>
+      <path class="arch-edge" d="M435,58 H550" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="492" y="50" text-anchor="middle">train</text>
+      <path class="arch-edge" d="M625,86 V190" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="632" y="140">export</text>
+      <path class="arch-edge dashed" d="M550,218 H435" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="490" y="210" text-anchor="middle">load</text>
+      <path class="arch-edge dashed" d="M285,218 H170" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="227" y="210" text-anchor="middle">risk report</text>
+    </svg>
+  </div>
+  <p class="modal-desc">
+    Customer usage, billing, and tenure features train a neural network classifier offline; the
+    exported model is loaded into a Streamlit app that scores churn risk in real time and surfaces
+    at-risk customers to the retention team.
+  </p>
+</template>
+
+<template id="tpl-arch-genai">
+  <div class="arch-diagram-wrap">
+    <svg viewBox="0 0 720 300">
+      <rect class="arch-node cat-genai" x="20" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="95" y="54" text-anchor="middle">Product Catalog</text>
+      <text class="arch-node-sub" x="95" y="70" text-anchor="middle">SQL attributes</text>
+
+      <rect class="arch-node cat-genai" x="285" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="360" y="54" text-anchor="middle">Embedding Generator</text>
+      <text class="arch-node-sub" x="360" y="70" text-anchor="middle">Attribute → vector</text>
+
+      <rect class="arch-node cat-genai" x="550" y="30" width="150" height="56"/>
+      <text class="arch-node-title" x="625" y="54" text-anchor="middle">FAISS Index</text>
+      <text class="arch-node-sub" x="625" y="70" text-anchor="middle">Vector store</text>
+
+      <rect class="arch-node cat-genai" x="20" y="190" width="150" height="56"/>
+      <text class="arch-node-title" x="95" y="214" text-anchor="middle">User Query</text>
+      <text class="arch-node-sub" x="95" y="230" text-anchor="middle">Natural language</text>
+
+      <rect class="arch-node cat-genai" x="285" y="190" width="150" height="56"/>
+      <text class="arch-node-title" x="360" y="214" text-anchor="middle">LangChain Retriever</text>
+      <text class="arch-node-sub" x="360" y="230" text-anchor="middle">Similarity search</text>
+
+      <rect class="arch-node cat-genai" x="550" y="190" width="150" height="56"/>
+      <text class="arch-node-title" x="625" y="214" text-anchor="middle">LLM + Prompts</text>
+      <text class="arch-node-sub" x="625" y="230" text-anchor="middle">Few-shot templates</text>
+
+      <rect class="arch-node cat-genai" x="285" y="260" width="150" height="30" rx="15"/>
+      <text class="arch-node-title" x="360" y="279" text-anchor="middle" style="font-size:11px">Streamlit UI</text>
+
+      <path class="arch-edge" d="M170,58 H285" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="227" y="50" text-anchor="middle">embed</text>
+      <path class="arch-edge" d="M435,58 H550" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="492" y="50" text-anchor="middle">store</text>
+      <path class="arch-edge" d="M170,218 H285" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="227" y="210" text-anchor="middle">query</text>
+      <path class="arch-edge dashed" d="M360,190 V86" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="368" y="140">search</text>
+      <path class="arch-edge" d="M435,218 H550" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="492" y="210" text-anchor="middle">context</text>
+      <path class="arch-edge" d="M625,246 V260 Q625,268 610,268 H435" marker-end="url(#archArrow)"/>
+    </svg>
+  </div>
+  <p class="modal-desc">
+    Product attributes are embedded and stored in a FAISS vector index. A LangChain retriever
+    turns natural-language queries into similarity searches over that index, and the retrieved
+    product context is fed into prompt templates before generation — grounding the LLM's output in
+    real catalog data and surfacing results through a Streamlit UI.
+  </p>
+</template>
 
 <!-- FOOTER -->
 <footer class="container">
