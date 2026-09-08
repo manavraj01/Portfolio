@@ -749,7 +749,7 @@ section + section { border-top: 1px solid var(--border); }
 
 .modal-body { padding: 1.6rem 1.8rem 2rem; }
 .arch-diagram-wrap { overflow-x: auto; margin-bottom: 1.4rem; }
-.arch-diagram-wrap svg { min-width: 620px; }
+.arch-diagram-wrap svg { display: block; width: 100%; max-width: 380px; margin: 0 auto; }
 .modal-desc { color: var(--text-2); font-size: 0.95rem; line-height: 1.75; }
 
 .arch-node { fill: var(--surface-2); stroke-width: 1.4; rx: 10; }
@@ -828,9 +828,13 @@ section + section { border-top: 1px solid var(--border); }
   border-radius: 12px;
   display: flex; align-items: center; justify-content: center;
   background: rgba(255,161,22,0.12);
+  border: 1px solid rgba(255,161,22,0.3);
   color: #ffa116;
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: -0.02em;
 }
-.leetcode-mark svg { width: 24px; height: 24px; }
 .leetcode-card h3 { font-family: 'Sora', sans-serif; font-size: 1.05rem; margin-bottom: 0.3rem; }
 .leetcode-card .handle { color: var(--text-3); font-size: 0.85rem; margin-bottom: 1.4rem; }
 .leetcode-stats-embed { width: 100%; border-radius: 10px; display: block; }
@@ -1006,5 +1010,8 @@ footer {
   .tl-head { flex-direction: column; align-items: flex-start; }
   footer { flex-direction: column; text-align: center; }
   .log-entry { flex-direction: column; gap: 0.4rem; }
-  .arch-diagram-wrap svg { min-width: 560px; }
+  .modal-header { padding: 1.3rem 1.2rem 1rem; }
+  .modal-body { padding: 1.3rem 1.2rem 1.6rem; }
+  .project-links { flex-wrap: wrap; row-gap: 0.7rem; }
+  .btn-arch { margin-left: 0; width: 100%; justify-content: center; padding: 0.6rem 0.85rem; }
 }

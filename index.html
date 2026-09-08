@@ -801,21 +801,80 @@
         <h3 class="subsection-title">Coding Practice</h3>
         <div class="practice-grid reveal-group">
           <div class="leetcode-card reveal">
-            <div class="leetcode-mark">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4L7 12l8 8M7 12h13"/></svg>
-            </div>
+            <div class="leetcode-mark" aria-hidden="true">LC</div>
             <h3>LeetCode Profile</h3>
-            <div class="handle" id="leetcodeHandle">Profile link coming soon</div>
-            <div class="leetcode-empty" id="leetcodeEmpty">
-              LeetCode username not connected yet — once added, this card will link straight to
-              the profile and show a live solved-problems stats card.
+            <div class="handle">@manavrajthakor01</div>
+            <img
+              class="leetcode-stats-embed"
+              src="https://leetcard.jacoblin.cool/manavrajthakor01?theme=dark"
+              alt="manavrajthakor01 LeetCode solved-problem stats"
+              loading="lazy"
+              onerror="this.style.display='none'; document.getElementById('leetcodeEmpty').hidden=false;"
+            />
+            <div class="leetcode-empty" id="leetcodeEmpty" hidden>
+              Live stats card unavailable right now — the profile link below still works.
+            </div>
+            <div style="margin-top:1.2rem;">
+              <a href="https://leetcode.com/u/manavrajthakor01/" target="_blank" rel="noopener" class="btn btn-outline btn-sm">View Profile</a>
             </div>
           </div>
 
           <div class="log-list reveal" id="logList">
-            <div class="log-empty-state">
-              Daily solve log coming soon — problem name, difficulty, and the key takeaway from
-              each session will appear here as I work through them.
+            <div class="log-entry">
+              <div class="log-date">Sep 8 · Day 1</div>
+              <div>
+                <div class="log-entry-title"><h4>Contains Duplicate</h4><span class="diff-badge diff-easy">Easy</span></div>
+                <p class="log-takeaway">Brute-force pairwise comparison is O(n²); inserting into a HashSet while iterating catches a repeat in O(1) per check, O(n) overall.</p>
+                <div class="log-tags"><span>HashSet</span></div>
+              </div>
+            </div>
+            <div class="log-entry">
+              <div class="log-date">Sep 8 · Day 1</div>
+              <div>
+                <div class="log-entry-title"><h4>Two Sum</h4><span class="diff-badge diff-easy">Easy</span></div>
+                <p class="log-takeaway">Store each visited value's index in a HashMap and check for its complement on the way through — turns an O(n²) pair search into a single O(n) pass.</p>
+                <div class="log-tags"><span>Complement + HashMap</span></div>
+              </div>
+            </div>
+            <div class="log-entry">
+              <div class="log-date">Sep 8 · Day 1</div>
+              <div>
+                <div class="log-entry-title"><h4>Valid Anagram</h4><span class="diff-badge diff-easy">Easy</span></div>
+                <p class="log-takeaway">Build a frequency map of one string and decrement while scanning the other; anything left non-zero means they're not anagrams.</p>
+                <div class="log-tags"><span>Frequency map</span></div>
+              </div>
+            </div>
+            <div class="log-entry">
+              <div class="log-date">Sep 8 · Day 1</div>
+              <div>
+                <div class="log-entry-title"><h4>First Unique Character in a String</h4><span class="diff-badge diff-easy">Easy</span></div>
+                <p class="log-takeaway">One pass builds a frequency map, a second pass returns the first index with count 1 — avoids re-scanning per character.</p>
+                <div class="log-tags"><span>Frequency + second pass</span></div>
+              </div>
+            </div>
+            <div class="log-entry">
+              <div class="log-date">Sep 8 · Day 1</div>
+              <div>
+                <div class="log-entry-title"><h4>Group Anagrams</h4><span class="diff-badge diff-medium">Medium</span></div>
+                <p class="log-takeaway">Sort each word's letters to form a canonical key; words sharing a key get grouped in a HashMap of lists.</p>
+                <div class="log-tags"><span>Canonical key</span></div>
+              </div>
+            </div>
+            <div class="log-entry">
+              <div class="log-date">Sep 8 · Day 1</div>
+              <div>
+                <div class="log-entry-title"><h4>Longest Consecutive Sequence</h4><span class="diff-badge diff-medium">Medium</span></div>
+                <p class="log-takeaway">Drop every number into a HashSet, then only start counting a run from numbers with no predecessor present — keeps the whole scan O(n) instead of sorting.</p>
+                <div class="log-tags"><span>HashSet</span></div>
+              </div>
+            </div>
+            <div class="log-entry">
+              <div class="log-date">Sep 8 · Day 1</div>
+              <div>
+                <div class="log-entry-title"><h4>Subarray Sum Equals K</h4><span class="diff-badge diff-medium">Medium</span></div>
+                <p class="log-takeaway">Track running prefix sums in a HashMap; a subarray sums to k exactly when (currentSum − k) has already been seen.</p>
+                <div class="log-tags"><span>Prefix Sum + HashMap</span></div>
+              </div>
             </div>
           </div>
         </div>
@@ -824,8 +883,87 @@
       <div class="subsection">
         <h3 class="subsection-title">Currently Learning</h3>
         <div class="learning-list reveal-group" id="learningList">
-          <div class="log-empty-state reveal">
-            What I'm reading and the key takeaways will show up here as I go.
+          <div class="learning-entry reveal">
+            <div class="learning-entry-head"><span class="learning-source">Networking Fundamentals</span><span class="learning-date">Sep 8 · Day 1</span></div>
+            <ul>
+              <li>An IP identifies a host; a port identifies which process on that host — you need both to reach a specific service.</li>
+              <li>TCP is reliable and ordered (SYN → SYN-ACK → ACK handshake); UDP is fire-and-forget with lower overhead.</li>
+              <li>TLS wraps the TCP connection in encryption/authentication before HTTP flows — that's the HTTP vs HTTPS difference.</li>
+              <li>Typing a URL = DNS lookup → TCP handshake → TLS handshake → HTTP request/response → render.</li>
+            </ul>
+          </div>
+          <div class="learning-entry reveal">
+            <div class="learning-entry-head"><span class="learning-source">SQL: Filtering, Aggregation &amp; Window Functions</span><span class="learning-date">Sep 8 · Day 1</span></div>
+            <ul>
+              <li>WHERE filters rows before grouping; HAVING filters groups after aggregation — the ordering is the classic interview trip-up.</li>
+              <li>JOINs combine rows across tables on a matching key; the join type controls what happens to non-matching rows.</li>
+              <li>Window functions (ROW_NUMBER, RANK, DENSE_RANK with PARTITION BY) compute per-row rankings without collapsing rows the way GROUP BY does.</li>
+            </ul>
+          </div>
+          <div class="learning-entry reveal">
+            <div class="learning-entry-head"><span class="learning-source">Excel for Data Analysis</span><span class="learning-date">Sep 8 · Day 1</span></div>
+            <ul>
+              <li>XLOOKUP replaces VLOOKUP with a cleaner lookup-value/array/return-array signature and a built-in "not found" fallback.</li>
+              <li>SUMIFS/COUNTIFS/AVERAGEIFS all follow the same pattern — one or more criteria ranges paired with conditions.</li>
+              <li>PivotTables are the fast path to a group-and-aggregate summary without writing formulas at all.</li>
+            </ul>
+          </div>
+          <div class="learning-entry reveal">
+            <div class="learning-entry-head"><span class="learning-source">Power BI: Star Schema &amp; DAX</span><span class="learning-date">Sep 8 · Day 1</span></div>
+            <ul>
+              <li>A star schema separates fact tables (events — "what happened") from dimension tables (descriptive context), linked by keys.</li>
+              <li>A measure is computed at query time and responds to filter context; a calculated column is computed once per row at load time.</li>
+              <li>CALCULATE() is the function that actually modifies the filter context a measure evaluates under.</li>
+            </ul>
+          </div>
+          <div class="learning-entry reveal">
+            <div class="learning-entry-head"><span class="learning-source">Python Collections</span><span class="learning-date">Sep 8 · Day 1</span></div>
+            <ul>
+              <li>list: ordered, mutable, O(n) membership check. set/dict: ~O(1) average membership/lookup. tuple: immutable, usable as a dict key.</li>
+              <li>Choosing set/dict over list for membership checks is one of the highest-leverage everyday optimizations — O(n) → O(1) average.</li>
+              <li>Counter and defaultdict remove the boilerplate around frequency counting and grouping.</li>
+            </ul>
+          </div>
+          <div class="learning-entry reveal">
+            <div class="learning-entry-head"><span class="learning-source">ML Fundamentals: Bias/Variance &amp; Precision/Recall</span><span class="learning-date">Sep 8 · Day 1</span></div>
+            <ul>
+              <li>Overfitting = low training error, high test error; underfitting = high error on both. Same idea as high variance vs. high bias.</li>
+              <li>Precision = TP/(TP+FP) — of what I flagged positive, how much was right. Recall = TP/(TP+FN) — of all actual positives, how much did I catch.</li>
+              <li>99% accuracy can be meaningless on an imbalanced dataset. Fraud detection generally prioritizes recall — missed fraud costs more than a false alarm.</li>
+            </ul>
+          </div>
+          <div class="learning-entry reveal">
+            <div class="learning-entry-head"><span class="learning-source">RAG / LLM Fundamentals</span><span class="learning-date">Sep 8 · Day 1</span></div>
+            <ul>
+              <li>An embedding maps text to a vector so semantically similar text ends up close together in vector space.</li>
+              <li>Documents get chunked before embedding because retrieval quality depends on chunks being coherent but not too large.</li>
+              <li>A vector DB indexes embeddings for fast nearest-neighbor search; retrieval pulls the top-k most similar chunks to ground generation.</li>
+              <li>If a RAG system hallucinates, check retrieval quality first — is the right chunk even being retrieved — before blaming the prompt.</li>
+            </ul>
+          </div>
+          <div class="learning-entry reveal">
+            <div class="learning-entry-head"><span class="learning-source">AWS / Cloud Core Services</span><span class="learning-date">Sep 8 · Day 1</span></div>
+            <ul>
+              <li>EC2 is a general-purpose VM; Lambda runs a function on-demand without managing a server — control vs. operational overhead.</li>
+              <li>S3 stores objects/files; RDS is a managed relational database. Uploaded files belong in S3, not an app server's local disk.</li>
+              <li>VPC is the network layer everything runs inside; IAM controls who/what can call which service.</li>
+            </ul>
+          </div>
+          <div class="learning-entry reveal">
+            <div class="learning-entry-head"><span class="learning-source">Backend / REST API Design</span><span class="learning-date">Sep 8 · Day 1</span></div>
+            <ul>
+              <li>Resources are nouns (/users/{id}), not verbs — POST /getUser fights the HTTP method's own semantics.</li>
+              <li>PUT replaces a resource wholesale; PATCH applies a partial update.</li>
+              <li>Status codes should communicate the outcome directly: 201 (created), 401 (unauthenticated) vs. 403 (unauthorized), 404, 409 (conflict), 500 — not 200 with an error buried in the body.</li>
+            </ul>
+          </div>
+          <div class="learning-entry reveal">
+            <div class="learning-entry-head"><span class="learning-source">System Design Basics</span><span class="learning-date">Sep 8 · Day 1</span></div>
+            <ul>
+              <li>The request path: DNS → internet → load balancer → app servers → cache → database.</li>
+              <li>App servers behind a load balancer need to be stateless — session state belongs in a shared store, not server memory.</li>
+              <li>A cache (e.g. Redis) absorbs repeated reads in front of the database; a queue decouples producers from slow downstream consumers.</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -898,77 +1036,70 @@
 
 <template id="tpl-arch-ordermgmt">
   <div class="arch-diagram-wrap">
-    <svg viewBox="0 0 720 300">
-      <rect class="arch-node cat-backend" x="20" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="95" y="54" text-anchor="middle">Client</text>
-      <text class="arch-node-sub" x="95" y="70" text-anchor="middle">Web / Admin UI</text>
+    <svg viewBox="0 0 340 426">
+      <rect class="arch-node cat-backend" x="20" y="20" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="44" text-anchor="middle">Client</text>
+      <text class="arch-node-sub" x="170" y="60" text-anchor="middle">Web / Admin UI</text>
 
-      <rect class="arch-node cat-backend" x="285" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="360" y="54" text-anchor="middle">Spring Boot API</text>
-      <text class="arch-node-sub" x="360" y="70" text-anchor="middle">Order · Inventory · Payment</text>
+      <rect class="arch-node cat-backend" x="20" y="130" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="154" text-anchor="middle">Spring Boot API</text>
+      <text class="arch-node-sub" x="170" y="170" text-anchor="middle">Order · Inventory · Payment · Admin</text>
 
-      <rect class="arch-node cat-backend" x="550" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="625" y="54" text-anchor="middle">Oracle DB</text>
-      <text class="arch-node-sub" x="625" y="70" text-anchor="middle">Hibernate / JPA</text>
+      <rect class="arch-node cat-backend" x="20" y="240" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="264" text-anchor="middle">Oracle DB</text>
+      <text class="arch-node-sub" x="170" y="280" text-anchor="middle">Hibernate/JPA · Orders · Customers · Payments</text>
 
-      <rect class="arch-node cat-backend" x="20" y="190" width="150" height="56"/>
-      <text class="arch-node-title" x="95" y="214" text-anchor="middle">Admin Dashboard</text>
-      <text class="arch-node-sub" x="95" y="230" text-anchor="middle">Status &amp; reporting</text>
+      <rect class="arch-node cat-backend" x="20" y="350" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="374" text-anchor="middle">Logging</text>
+      <text class="arch-node-sub" x="170" y="390" text-anchor="middle">SLF4J / Log4j — traces failures</text>
 
-      <rect class="arch-node cat-backend" x="550" y="190" width="150" height="56"/>
-      <text class="arch-node-title" x="625" y="214" text-anchor="middle">Logging</text>
-      <text class="arch-node-sub" x="625" y="230" text-anchor="middle">SLF4J / Log4j</text>
-
-      <path class="arch-edge" d="M170,58 H285" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="227" y="50" text-anchor="middle">REST</text>
-      <path class="arch-edge" d="M435,58 H550" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="492" y="50" text-anchor="middle">JDBC</text>
-      <path class="arch-edge dashed" d="M95,190 V86" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="102" y="140">admin ops</text>
-      <path class="arch-edge dashed" d="M625,86 V190" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="632" y="140">log events</text>
+      <path class="arch-edge" d="M170,76 V130" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="107">REST</text>
+      <path class="arch-edge" d="M170,186 V240" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="217">Hibernate/JPA</text>
+      <path class="arch-edge dashed" d="M170,296 V350" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="327">on failure</text>
     </svg>
   </div>
   <p class="modal-desc">
     A layered Spring Boot service exposes order, inventory, and payment REST endpoints behind a
-    single API surface. Hibernate/JPA maps requests onto a normalized Oracle schema, while the
-    admin dashboard reuses the same API for status updates and reporting, and structured logging
+    single API surface — the admin dashboard reuses the same endpoints for status updates and
+    reporting. Hibernate/JPA maps requests onto a normalized Oracle schema, and structured logging
     traces failures back to their originating request.
   </p>
 </template>
 
 <template id="tpl-arch-inventory">
   <div class="arch-diagram-wrap">
-    <svg viewBox="0 0 720 300">
-      <rect class="arch-node cat-backend" x="20" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="95" y="54" text-anchor="middle">Warehouse Terminal</text>
-      <text class="arch-node-sub" x="95" y="70" text-anchor="middle">Per-location client</text>
+    <svg viewBox="0 0 340 536">
+      <rect class="arch-node cat-backend" x="20" y="20" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="44" text-anchor="middle">Warehouse Terminal</text>
+      <text class="arch-node-sub" x="170" y="60" text-anchor="middle">Per-location client</text>
 
-      <rect class="arch-node cat-backend" x="285" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="360" y="54" text-anchor="middle">Core Java App</text>
-      <text class="arch-node-sub" x="360" y="70" text-anchor="middle">Config-driven registry</text>
+      <rect class="arch-node cat-backend" x="20" y="130" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="154" text-anchor="middle">Core Java App</text>
+      <text class="arch-node-sub" x="170" y="170" text-anchor="middle">Config-driven warehouse registry</text>
 
-      <rect class="arch-node cat-backend" x="550" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="625" y="54" text-anchor="middle">Oracle DB</text>
-      <text class="arch-node-sub" x="625" y="70" text-anchor="middle">Stock tables</text>
+      <rect class="arch-node cat-backend" x="20" y="240" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="264" text-anchor="middle">Oracle DB</text>
+      <text class="arch-node-sub" x="170" y="280" text-anchor="middle">Stock tables</text>
 
-      <rect class="arch-node cat-backend" x="550" y="190" width="150" height="56"/>
-      <text class="arch-node-title" x="625" y="214" text-anchor="middle">PL/SQL Trigger</text>
-      <text class="arch-node-sub" x="625" y="230" text-anchor="middle">Reorder threshold check</text>
+      <rect class="arch-node cat-backend" x="20" y="350" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="374" text-anchor="middle">PL/SQL Trigger</text>
+      <text class="arch-node-sub" x="170" y="390" text-anchor="middle">Reorder threshold check</text>
 
-      <rect class="arch-node cat-backend" x="285" y="190" width="150" height="56"/>
-      <text class="arch-node-title" x="360" y="214" text-anchor="middle">Low-Stock Alert</text>
-      <text class="arch-node-sub" x="360" y="230" text-anchor="middle">Notify operators</text>
+      <rect class="arch-node cat-backend" x="20" y="460" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="484" text-anchor="middle">Low-Stock Alert</text>
+      <text class="arch-node-sub" x="170" y="500" text-anchor="middle">Notifies operators</text>
 
-      <path class="arch-edge" d="M170,58 H285" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="227" y="50" text-anchor="middle">JDBC</text>
-      <path class="arch-edge" d="M435,58 H550" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="492" y="50" text-anchor="middle">update stock</text>
-      <path class="arch-edge" d="M625,86 V190" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="632" y="140">on insert/update</text>
-      <path class="arch-edge dashed" d="M550,218 H435" marker-end="url(#archArrow)"/>
-      <path class="arch-edge dashed" d="M285,218 H170 V86" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="102" y="140">notify</text>
+      <path class="arch-edge" d="M170,76 V130" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="107">JDBC</text>
+      <path class="arch-edge" d="M170,186 V240" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="217">update stock</text>
+      <path class="arch-edge" d="M170,296 V350" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="327">on insert/update</text>
+      <path class="arch-edge dashed" d="M170,406 V460" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="437">threshold breached</text>
     </svg>
   </div>
   <p class="modal-desc">
@@ -981,36 +1112,35 @@
 
 <template id="tpl-arch-ticketing">
   <div class="arch-diagram-wrap">
-    <svg viewBox="0 0 720 300">
-      <rect class="arch-node cat-backend" x="20" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="95" y="54" text-anchor="middle">Agent / Supervisor UI</text>
-      <text class="arch-node-sub" x="95" y="70" text-anchor="middle">React, role-based</text>
+    <svg viewBox="0 0 340 536">
+      <rect class="arch-node cat-backend" x="20" y="20" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="44" text-anchor="middle">Agent / Supervisor UI</text>
+      <text class="arch-node-sub" x="170" y="60" text-anchor="middle">React, role-based</text>
 
-      <rect class="arch-node cat-backend" x="285" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="360" y="54" text-anchor="middle">Spring Boot API</text>
-      <text class="arch-node-sub" x="360" y="70" text-anchor="middle">RBAC · ticket lifecycle</text>
+      <rect class="arch-node cat-backend" x="20" y="130" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="154" text-anchor="middle">Spring Boot API</text>
+      <text class="arch-node-sub" x="170" y="170" text-anchor="middle">RBAC · ticket lifecycle</text>
 
-      <rect class="arch-node cat-backend" x="550" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="625" y="54" text-anchor="middle">Oracle DB</text>
-      <text class="arch-node-sub" x="625" y="70" text-anchor="middle">Tickets · SLA state</text>
+      <rect class="arch-node cat-backend" x="20" y="240" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="264" text-anchor="middle">Oracle DB</text>
+      <text class="arch-node-sub" x="170" y="280" text-anchor="middle">Tickets · SLA state</text>
 
-      <rect class="arch-node cat-backend" x="550" y="190" width="150" height="56"/>
-      <text class="arch-node-title" x="625" y="214" text-anchor="middle">SLA Timer Job</text>
-      <text class="arch-node-sub" x="625" y="230" text-anchor="middle">Scheduled evaluation</text>
+      <rect class="arch-node cat-backend" x="20" y="350" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="374" text-anchor="middle">SLA Timer Job</text>
+      <text class="arch-node-sub" x="170" y="390" text-anchor="middle">Scheduled evaluation</text>
 
-      <rect class="arch-node cat-backend" x="285" y="190" width="150" height="56"/>
-      <text class="arch-node-title" x="360" y="214" text-anchor="middle">Breach Alert</text>
-      <text class="arch-node-sub" x="360" y="230" text-anchor="middle">Escalation &amp; daily report</text>
+      <rect class="arch-node cat-backend" x="20" y="460" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="484" text-anchor="middle">Breach Alert</text>
+      <text class="arch-node-sub" x="170" y="500" text-anchor="middle">Escalation &amp; daily report</text>
 
-      <path class="arch-edge" d="M170,58 H285" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="227" y="50" text-anchor="middle">REST</text>
-      <path class="arch-edge" d="M435,58 H550" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="492" y="50" text-anchor="middle">persist</text>
-      <path class="arch-edge" d="M625,86 V190" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="632" y="140">reads open tickets</text>
-      <path class="arch-edge dashed" d="M550,218 H435" marker-end="url(#archArrow)"/>
-      <path class="arch-edge dashed" d="M285,218 H170 V86" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="100" y="140">escalate</text>
+      <path class="arch-edge" d="M170,76 V130" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="107">REST</text>
+      <path class="arch-edge" d="M170,186 V240" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="217">persist</text>
+      <path class="arch-edge" d="M170,296 V350" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="327">reads open tickets</text>
+      <path class="arch-edge dashed" d="M170,406 V460" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="437">on breach</text>
     </svg>
   </div>
   <p class="modal-desc">
@@ -1022,77 +1152,70 @@
 
 <template id="tpl-arch-netmon">
   <div class="arch-diagram-wrap">
-    <svg viewBox="0 0 720 300">
-      <rect class="arch-node cat-cloud" x="20" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="95" y="54" text-anchor="middle">Ansible Control Node</text>
-      <text class="arch-node-sub" x="95" y="70" text-anchor="middle">Playbooks</text>
+    <svg viewBox="0 0 340 536">
+      <rect class="arch-node cat-cloud" x="20" y="20" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="44" text-anchor="middle">Ansible Control Node</text>
+      <text class="arch-node-sub" x="170" y="60" text-anchor="middle">Playbooks</text>
 
-      <rect class="arch-node cat-cloud" x="285" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="360" y="54" text-anchor="middle">Managed Hosts</text>
-      <text class="arch-node-sub" x="360" y="70" text-anchor="middle">Simulated multi-node fleet</text>
+      <rect class="arch-node cat-cloud" x="20" y="130" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="154" text-anchor="middle">Managed Hosts</text>
+      <text class="arch-node-sub" x="170" y="170" text-anchor="middle">Simulated fleet · interface/latency checks</text>
 
-      <rect class="arch-node cat-cloud" x="550" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="625" y="54" text-anchor="middle">Diagnostics</text>
-      <text class="arch-node-sub" x="625" y="70" text-anchor="middle">Interface · latency · loss</text>
+      <rect class="arch-node cat-cloud" x="20" y="240" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="264" text-anchor="middle">SNMP Polling Agent</text>
+      <text class="arch-node-sub" x="170" y="280" text-anchor="middle">Python</text>
 
-      <rect class="arch-node cat-cloud" x="285" y="190" width="150" height="56"/>
-      <text class="arch-node-title" x="360" y="214" text-anchor="middle">SNMP Polling Agent</text>
-      <text class="arch-node-sub" x="360" y="230" text-anchor="middle">Python</text>
+      <rect class="arch-node cat-cloud" x="20" y="350" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="374" text-anchor="middle">Log Parser</text>
+      <text class="arch-node-sub" x="170" y="390" text-anchor="middle">Normalizes metrics</text>
 
-      <rect class="arch-node cat-cloud" x="550" y="190" width="150" height="56"/>
-      <text class="arch-node-title" x="625" y="214" text-anchor="middle">Alerting Module</text>
-      <text class="arch-node-sub" x="625" y="230" text-anchor="middle">Threshold breach notify</text>
+      <rect class="arch-node cat-cloud" x="20" y="460" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="484" text-anchor="middle">Alerting Module</text>
+      <text class="arch-node-sub" x="170" y="500" text-anchor="middle">Threshold breach notify</text>
 
-      <path class="arch-edge" d="M170,58 H285" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="227" y="50" text-anchor="middle">config push</text>
-      <path class="arch-edge" d="M435,58 H550" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="492" y="50" text-anchor="middle">runs checks</text>
-      <path class="arch-edge dashed" d="M360,190 V86" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="368" y="140">polled</text>
-      <path class="arch-edge" d="M435,218 H550" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="492" y="210" text-anchor="middle">metrics</text>
+      <path class="arch-edge" d="M170,76 V130" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="107">config push</text>
+      <path class="arch-edge dashed" d="M170,186 V240" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="217">polled</text>
+      <path class="arch-edge" d="M170,296 V350" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="327">parses</text>
+      <path class="arch-edge" d="M170,406 V460" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="437">threshold breach</text>
     </svg>
   </div>
   <p class="modal-desc">
     Ansible playbooks push configuration changes out to the managed Linux fleet, while a Python
-    polling agent independently walks each host over SNMP. Diagnostics scripts sample interface
-    status, latency, and packet loss; the agent's readings flow into an alerting module that fires
-    when device-health thresholds are breached.
+    polling agent independently walks each host over SNMP. Diagnostics sample interface status,
+    latency, and packet loss; the agent's readings are normalized and flow into an alerting module
+    that fires when device-health thresholds are breached.
   </p>
 </template>
 
 <template id="tpl-arch-syshealth">
   <div class="arch-diagram-wrap">
-    <svg viewBox="0 0 720 300">
-      <rect class="arch-node cat-cloud" x="20" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="95" y="54" text-anchor="middle">Linux Host</text>
-      <text class="arch-node-sub" x="95" y="70" text-anchor="middle">/proc · systemd · journalctl</text>
+    <svg viewBox="0 0 340 426">
+      <rect class="arch-node cat-cloud" x="20" y="20" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="44" text-anchor="middle">Linux Host</text>
+      <text class="arch-node-sub" x="170" y="60" text-anchor="middle">/proc · systemd · journalctl</text>
 
-      <rect class="arch-node cat-cloud" x="285" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="360" y="54" text-anchor="middle">Bash Collectors</text>
-      <text class="arch-node-sub" x="360" y="70" text-anchor="middle">Cron-scheduled</text>
+      <rect class="arch-node cat-cloud" x="20" y="130" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="154" text-anchor="middle">Bash Collectors</text>
+      <text class="arch-node-sub" x="170" y="170" text-anchor="middle">Cron-scheduled</text>
 
-      <rect class="arch-node cat-cloud" x="550" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="625" y="54" text-anchor="middle">SQLite DB</text>
-      <text class="arch-node-sub" x="625" y="70" text-anchor="middle">Metrics + traceability</text>
+      <rect class="arch-node cat-cloud" x="20" y="240" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="264" text-anchor="middle">SQLite DB</text>
+      <text class="arch-node-sub" x="170" y="280" text-anchor="middle">Metrics + req → design → test links</text>
 
-      <rect class="arch-node cat-cloud" x="550" y="190" width="150" height="56"/>
-      <text class="arch-node-title" x="625" y="214" text-anchor="middle">Traceability Model</text>
-      <text class="arch-node-sub" x="625" y="230" text-anchor="middle">Req → design → tests</text>
+      <rect class="arch-node cat-cloud" x="20" y="350" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="374" text-anchor="middle">Flask Dashboard</text>
+      <text class="arch-node-sub" x="170" y="390" text-anchor="middle">Stakeholder view</text>
 
-      <rect class="arch-node cat-cloud" x="285" y="190" width="150" height="56"/>
-      <text class="arch-node-title" x="360" y="214" text-anchor="middle">Flask Dashboard</text>
-      <text class="arch-node-sub" x="360" y="230" text-anchor="middle">Stakeholder view</text>
-
-      <path class="arch-edge" d="M170,58 H285" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="227" y="50" text-anchor="middle">collect</text>
-      <path class="arch-edge" d="M435,58 H550" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="492" y="50" text-anchor="middle">write</text>
-      <path class="arch-edge" d="M625,86 V190" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="632" y="140">links</text>
-      <path class="arch-edge dashed" d="M550,218 H435" marker-end="url(#archArrow)"/>
-      <path class="arch-edge dashed" d="M360,190 V86" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="368" y="140">reads</text>
+      <path class="arch-edge" d="M170,76 V130" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="107">collect</text>
+      <path class="arch-edge" d="M170,186 V240" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="217">write</text>
+      <path class="arch-edge" d="M170,296 V350" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="327">reads &amp; renders</text>
     </svg>
   </div>
   <p class="modal-desc">
@@ -1104,36 +1227,35 @@
 
 <template id="tpl-arch-grocery">
   <div class="arch-diagram-wrap">
-    <svg viewBox="0 0 720 300">
-      <rect class="arch-node cat-ml" x="20" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="95" y="54" text-anchor="middle">Retail Schema</text>
-      <text class="arch-node-sub" x="95" y="70" text-anchor="middle">Products · Sales · Stores</text>
+    <svg viewBox="0 0 340 536">
+      <rect class="arch-node cat-ml" x="20" y="20" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="44" text-anchor="middle">Retail Schema</text>
+      <text class="arch-node-sub" x="170" y="60" text-anchor="middle">Products · Sales · Stores (SQL)</text>
 
-      <rect class="arch-node cat-ml" x="285" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="360" y="54" text-anchor="middle">Feature Engineering</text>
-      <text class="arch-node-sub" x="360" y="70" text-anchor="middle">Lags · rolling avg · promo</text>
+      <rect class="arch-node cat-ml" x="20" y="130" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="154" text-anchor="middle">Feature Engineering</text>
+      <text class="arch-node-sub" x="170" y="170" text-anchor="middle">Lags · rolling avg · promo flags</text>
 
-      <rect class="arch-node cat-ml" x="550" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="625" y="54" text-anchor="middle">Forecast Model</text>
-      <text class="arch-node-sub" x="625" y="70" text-anchor="middle">XGBoost / Prophet</text>
+      <rect class="arch-node cat-ml" x="20" y="240" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="264" text-anchor="middle">Forecast Model</text>
+      <text class="arch-node-sub" x="170" y="280" text-anchor="middle">XGBoost / Prophet</text>
 
-      <rect class="arch-node cat-ml" x="550" y="190" width="150" height="56"/>
-      <text class="arch-node-title" x="625" y="214" text-anchor="middle">Reorder Engine</text>
-      <text class="arch-node-sub" x="625" y="230" text-anchor="middle">Reorder-point calc</text>
+      <rect class="arch-node cat-ml" x="20" y="350" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="374" text-anchor="middle">Reorder Engine</text>
+      <text class="arch-node-sub" x="170" y="390" text-anchor="middle">Reorder-point calc</text>
 
-      <rect class="arch-node cat-ml" x="285" y="190" width="150" height="56"/>
-      <text class="arch-node-title" x="360" y="214" text-anchor="middle">Streamlit Dashboard</text>
-      <text class="arch-node-sub" x="360" y="230" text-anchor="middle">Drift monitoring</text>
+      <rect class="arch-node cat-ml" x="20" y="460" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="484" text-anchor="middle">Streamlit Dashboard</text>
+      <text class="arch-node-sub" x="170" y="500" text-anchor="middle">Drift monitoring</text>
 
-      <path class="arch-edge" d="M170,58 H285" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="227" y="50" text-anchor="middle">SQL joins</text>
-      <path class="arch-edge" d="M435,58 H550" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="492" y="50" text-anchor="middle">train</text>
-      <path class="arch-edge" d="M625,86 V190" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="632" y="140">forecast</text>
-      <path class="arch-edge dashed" d="M550,218 H435" marker-end="url(#archArrow)"/>
-      <path class="arch-edge dashed" d="M360,190 V86" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="368" y="140">drift check</text>
+      <path class="arch-edge" d="M170,76 V130" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="107">SQL joins</text>
+      <path class="arch-edge" d="M170,186 V240" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="217">train</text>
+      <path class="arch-edge" d="M170,296 V350" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="327">forecast</text>
+      <path class="arch-edge dashed" d="M170,406 V460" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="437">visualize</text>
     </svg>
   </div>
   <p class="modal-desc">
@@ -1146,35 +1268,35 @@
 
 <template id="tpl-arch-rossmann">
   <div class="arch-diagram-wrap">
-    <svg viewBox="0 0 720 300">
-      <rect class="arch-node cat-ml" x="20" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="95" y="54" text-anchor="middle">Historical Sales</text>
-      <text class="arch-node-sub" x="95" y="70" text-anchor="middle">Store-level data</text>
+    <svg viewBox="0 0 340 536">
+      <rect class="arch-node cat-ml" x="20" y="20" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="44" text-anchor="middle">Historical Sales</text>
+      <text class="arch-node-sub" x="170" y="60" text-anchor="middle">Store-level data</text>
 
-      <rect class="arch-node cat-ml" x="285" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="360" y="54" text-anchor="middle">Feature Engineering</text>
-      <text class="arch-node-sub" x="360" y="70" text-anchor="middle">Seasonality · promotions</text>
+      <rect class="arch-node cat-ml" x="20" y="130" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="154" text-anchor="middle">Feature Engineering</text>
+      <text class="arch-node-sub" x="170" y="170" text-anchor="middle">Seasonality · promotions</text>
 
-      <rect class="arch-node cat-ml" x="550" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="625" y="54" text-anchor="middle">XGBoost Ensemble</text>
-      <text class="arch-node-sub" x="625" y="70" text-anchor="middle">Hyperparameter tuned</text>
+      <rect class="arch-node cat-ml" x="20" y="240" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="264" text-anchor="middle">XGBoost Ensemble</text>
+      <text class="arch-node-sub" x="170" y="280" text-anchor="middle">Hyperparameter tuned</text>
 
-      <rect class="arch-node cat-ml" x="285" y="190" width="150" height="56"/>
-      <text class="arch-node-title" x="360" y="214" text-anchor="middle">Evaluation</text>
-      <text class="arch-node-sub" x="360" y="230" text-anchor="middle">Holdout / cross-val</text>
+      <rect class="arch-node cat-ml" x="20" y="350" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="374" text-anchor="middle">Evaluation</text>
+      <text class="arch-node-sub" x="170" y="390" text-anchor="middle">Holdout / cross-val</text>
 
-      <rect class="arch-node cat-ml" x="550" y="190" width="150" height="56"/>
-      <text class="arch-node-title" x="625" y="214" text-anchor="middle">Forecast Report</text>
-      <text class="arch-node-sub" x="625" y="230" text-anchor="middle">Per-store predictions</text>
+      <rect class="arch-node cat-ml" x="20" y="460" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="484" text-anchor="middle">Forecast Report</text>
+      <text class="arch-node-sub" x="170" y="500" text-anchor="middle">Per-store predictions</text>
 
-      <path class="arch-edge" d="M170,58 H285" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="227" y="50" text-anchor="middle">engineer</text>
-      <path class="arch-edge" d="M435,58 H550" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="492" y="50" text-anchor="middle">train</text>
-      <path class="arch-edge" d="M625,86 V190" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="632" y="140">validate</text>
-      <path class="arch-edge" d="M550,218 H435" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="492" y="210" text-anchor="middle">compile</text>
+      <path class="arch-edge" d="M170,76 V130" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="107">engineer</text>
+      <path class="arch-edge" d="M170,186 V240" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="217">train</text>
+      <path class="arch-edge" d="M170,296 V350" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="327">validate</text>
+      <path class="arch-edge" d="M170,406 V460" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="437">compile</text>
     </svg>
   </div>
   <p class="modal-desc">
@@ -1186,40 +1308,35 @@
 
 <template id="tpl-arch-nyctaxi">
   <div class="arch-diagram-wrap">
-    <svg viewBox="0 0 720 300">
-      <rect class="arch-node cat-ml" x="20" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="95" y="54" text-anchor="middle">Raw Trip Data</text>
-      <text class="arch-node-sub" x="95" y="70" text-anchor="middle">Historical rides</text>
+    <svg viewBox="0 0 340 536">
+      <rect class="arch-node cat-ml" x="20" y="20" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="44" text-anchor="middle">Raw Trip Data</text>
+      <text class="arch-node-sub" x="170" y="60" text-anchor="middle">Historical rides</text>
 
-      <rect class="arch-node cat-ml" x="285" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="360" y="54" text-anchor="middle">Preprocessing</text>
-      <text class="arch-node-sub" x="360" y="70" text-anchor="middle">Cleaning · encoding</text>
+      <rect class="arch-node cat-ml" x="20" y="130" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="154" text-anchor="middle">Preprocessing</text>
+      <text class="arch-node-sub" x="170" y="170" text-anchor="middle">Cleaning · encoding</text>
 
-      <rect class="arch-node cat-ml" x="550" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="625" y="54" text-anchor="middle">TensorFlow Training</text>
-      <text class="arch-node-sub" x="625" y="70" text-anchor="middle">Deep model</text>
+      <rect class="arch-node cat-ml" x="20" y="240" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="264" text-anchor="middle">TensorFlow Training</text>
+      <text class="arch-node-sub" x="170" y="280" text-anchor="middle">Deep model</text>
 
-      <rect class="arch-node cat-ml" x="20" y="190" width="150" height="56"/>
-      <text class="arch-node-title" x="95" y="214" text-anchor="middle">Vue.js Client</text>
-      <text class="arch-node-sub" x="95" y="230" text-anchor="middle">Fare request UI</text>
+      <rect class="arch-node cat-ml" x="20" y="350" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="374" text-anchor="middle">Flask Inference API</text>
+      <text class="arch-node-sub" x="170" y="390" text-anchor="middle">Served model endpoint</text>
 
-      <rect class="arch-node cat-ml" x="285" y="190" width="150" height="56"/>
-      <text class="arch-node-title" x="360" y="214" text-anchor="middle">Flask API</text>
-      <text class="arch-node-sub" x="360" y="230" text-anchor="middle">Inference endpoint</text>
+      <rect class="arch-node cat-ml" x="20" y="460" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="484" text-anchor="middle">Vue.js Client</text>
+      <text class="arch-node-sub" x="170" y="500" text-anchor="middle">Fare request UI</text>
 
-      <rect class="arch-node cat-ml" x="550" y="190" width="150" height="56"/>
-      <text class="arch-node-title" x="625" y="214" text-anchor="middle">Model Server</text>
-      <text class="arch-node-sub" x="625" y="230" text-anchor="middle">Served TF artifact</text>
-
-      <path class="arch-edge" d="M170,58 H285" marker-end="url(#archArrow)"/>
-      <path class="arch-edge" d="M435,58 H550" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="492" y="50" text-anchor="middle">train</text>
-      <path class="arch-edge dashed" d="M625,86 V190" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="632" y="140">deploy</text>
-      <path class="arch-edge" d="M170,218 H285" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="227" y="210" text-anchor="middle">request</text>
-      <path class="arch-edge" d="M435,218 H550" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="492" y="210" text-anchor="middle">predict</text>
+      <path class="arch-edge" d="M170,76 V130" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="107">clean</text>
+      <path class="arch-edge" d="M170,186 V240" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="217">train</text>
+      <path class="arch-edge dashed" d="M170,296 V350" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="327">deploy</text>
+      <path class="arch-edge" d="M170,406 V460" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="437">serves predictions to</text>
     </svg>
   </div>
   <p class="modal-desc">
@@ -1232,40 +1349,35 @@
 
 <template id="tpl-arch-telcochurn">
   <div class="arch-diagram-wrap">
-    <svg viewBox="0 0 720 300">
-      <rect class="arch-node cat-ml" x="20" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="95" y="54" text-anchor="middle">Customer Data</text>
-      <text class="arch-node-sub" x="95" y="70" text-anchor="middle">Usage · billing · tenure</text>
+    <svg viewBox="0 0 340 536">
+      <rect class="arch-node cat-ml" x="20" y="20" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="44" text-anchor="middle">Customer Data</text>
+      <text class="arch-node-sub" x="170" y="60" text-anchor="middle">Usage · billing · tenure</text>
 
-      <rect class="arch-node cat-ml" x="285" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="360" y="54" text-anchor="middle">Feature Engineering</text>
-      <text class="arch-node-sub" x="360" y="70" text-anchor="middle">Preprocessing</text>
+      <rect class="arch-node cat-ml" x="20" y="130" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="154" text-anchor="middle">Feature Engineering</text>
+      <text class="arch-node-sub" x="170" y="170" text-anchor="middle">Preprocessing</text>
 
-      <rect class="arch-node cat-ml" x="550" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="625" y="54" text-anchor="middle">Neural Classifier</text>
-      <text class="arch-node-sub" x="625" y="70" text-anchor="middle">Churn probability</text>
+      <rect class="arch-node cat-ml" x="20" y="240" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="264" text-anchor="middle">Neural Classifier</text>
+      <text class="arch-node-sub" x="170" y="280" text-anchor="middle">Churn probability</text>
 
-      <rect class="arch-node cat-ml" x="550" y="190" width="150" height="56"/>
-      <text class="arch-node-title" x="625" y="214" text-anchor="middle">Model Artifact</text>
-      <text class="arch-node-sub" x="625" y="230" text-anchor="middle">Exported weights</text>
+      <rect class="arch-node cat-ml" x="20" y="350" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="374" text-anchor="middle">Model Artifact</text>
+      <text class="arch-node-sub" x="170" y="390" text-anchor="middle">Exported weights</text>
 
-      <rect class="arch-node cat-ml" x="285" y="190" width="150" height="56"/>
-      <text class="arch-node-title" x="360" y="214" text-anchor="middle">Streamlit App</text>
-      <text class="arch-node-sub" x="360" y="230" text-anchor="middle">Real-time risk scoring</text>
+      <rect class="arch-node cat-ml" x="20" y="460" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="484" text-anchor="middle">Streamlit App</text>
+      <text class="arch-node-sub" x="170" y="500" text-anchor="middle">Real-time scoring → retention team</text>
 
-      <rect class="arch-node cat-ml" x="20" y="190" width="150" height="56"/>
-      <text class="arch-node-title" x="95" y="214" text-anchor="middle">Retention Team</text>
-      <text class="arch-node-sub" x="95" y="230" text-anchor="middle">Business user</text>
-
-      <path class="arch-edge" d="M170,58 H285" marker-end="url(#archArrow)"/>
-      <path class="arch-edge" d="M435,58 H550" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="492" y="50" text-anchor="middle">train</text>
-      <path class="arch-edge" d="M625,86 V190" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="632" y="140">export</text>
-      <path class="arch-edge dashed" d="M550,218 H435" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="490" y="210" text-anchor="middle">load</text>
-      <path class="arch-edge dashed" d="M285,218 H170" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="227" y="210" text-anchor="middle">risk report</text>
+      <path class="arch-edge" d="M170,76 V130" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="107">engineer</text>
+      <path class="arch-edge" d="M170,186 V240" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="217">train</text>
+      <path class="arch-edge" d="M170,296 V350" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="327">export</text>
+      <path class="arch-edge dashed" d="M170,406 V460" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="437">loads &amp; scores</text>
     </svg>
   </div>
   <p class="modal-desc">
@@ -1277,45 +1389,41 @@
 
 <template id="tpl-arch-genai">
   <div class="arch-diagram-wrap">
-    <svg viewBox="0 0 720 300">
-      <rect class="arch-node cat-genai" x="20" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="95" y="54" text-anchor="middle">Product Catalog</text>
-      <text class="arch-node-sub" x="95" y="70" text-anchor="middle">SQL attributes</text>
+    <svg viewBox="0 0 340 646">
+      <rect class="arch-node cat-genai" x="20" y="20" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="44" text-anchor="middle">Product Catalog</text>
+      <text class="arch-node-sub" x="170" y="60" text-anchor="middle">SQL attributes</text>
 
-      <rect class="arch-node cat-genai" x="285" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="360" y="54" text-anchor="middle">Embedding Generator</text>
-      <text class="arch-node-sub" x="360" y="70" text-anchor="middle">Attribute → vector</text>
+      <rect class="arch-node cat-genai" x="20" y="130" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="154" text-anchor="middle">Embedding Generator</text>
+      <text class="arch-node-sub" x="170" y="170" text-anchor="middle">Attribute → vector</text>
 
-      <rect class="arch-node cat-genai" x="550" y="30" width="150" height="56"/>
-      <text class="arch-node-title" x="625" y="54" text-anchor="middle">FAISS Index</text>
-      <text class="arch-node-sub" x="625" y="70" text-anchor="middle">Vector store</text>
+      <rect class="arch-node cat-genai" x="20" y="240" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="264" text-anchor="middle">FAISS Index</text>
+      <text class="arch-node-sub" x="170" y="280" text-anchor="middle">Vector store</text>
 
-      <rect class="arch-node cat-genai" x="20" y="190" width="150" height="56"/>
-      <text class="arch-node-title" x="95" y="214" text-anchor="middle">User Query</text>
-      <text class="arch-node-sub" x="95" y="230" text-anchor="middle">Natural language</text>
+      <rect class="arch-node cat-genai" x="20" y="350" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="374" text-anchor="middle">LangChain Retriever</text>
+      <text class="arch-node-sub" x="170" y="390" text-anchor="middle">NL query → similarity search</text>
 
-      <rect class="arch-node cat-genai" x="285" y="190" width="150" height="56"/>
-      <text class="arch-node-title" x="360" y="214" text-anchor="middle">LangChain Retriever</text>
-      <text class="arch-node-sub" x="360" y="230" text-anchor="middle">Similarity search</text>
+      <rect class="arch-node cat-genai" x="20" y="460" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="484" text-anchor="middle">LLM + Prompts</text>
+      <text class="arch-node-sub" x="170" y="500" text-anchor="middle">Few-shot templates, grounded context</text>
 
-      <rect class="arch-node cat-genai" x="550" y="190" width="150" height="56"/>
-      <text class="arch-node-title" x="625" y="214" text-anchor="middle">LLM + Prompts</text>
-      <text class="arch-node-sub" x="625" y="230" text-anchor="middle">Few-shot templates</text>
+      <rect class="arch-node cat-genai" x="20" y="570" width="300" height="56"/>
+      <text class="arch-node-title" x="170" y="594" text-anchor="middle">Streamlit UI</text>
+      <text class="arch-node-sub" x="170" y="610" text-anchor="middle">Generated description / recommendations</text>
 
-      <rect class="arch-node cat-genai" x="285" y="260" width="150" height="30" rx="15"/>
-      <text class="arch-node-title" x="360" y="279" text-anchor="middle" style="font-size:11px">Streamlit UI</text>
-
-      <path class="arch-edge" d="M170,58 H285" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="227" y="50" text-anchor="middle">embed</text>
-      <path class="arch-edge" d="M435,58 H550" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="492" y="50" text-anchor="middle">store</text>
-      <path class="arch-edge" d="M170,218 H285" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="227" y="210" text-anchor="middle">query</text>
-      <path class="arch-edge dashed" d="M360,190 V86" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="368" y="140">search</text>
-      <path class="arch-edge" d="M435,218 H550" marker-end="url(#archArrow)"/>
-      <text class="arch-edge-label" x="492" y="210" text-anchor="middle">context</text>
-      <path class="arch-edge" d="M625,246 V260 Q625,268 610,268 H435" marker-end="url(#archArrow)"/>
+      <path class="arch-edge" d="M170,76 V130" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="107">embed</text>
+      <path class="arch-edge" d="M170,186 V240" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="217">store &amp; index</text>
+      <path class="arch-edge" d="M170,296 V350" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="327">retrieves top-k</text>
+      <path class="arch-edge" d="M170,406 V460" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="437">grounds generation</text>
+      <path class="arch-edge" d="M170,516 V570" marker-end="url(#archArrow)"/>
+      <text class="arch-edge-label" x="184" y="547">renders</text>
     </svg>
   </div>
   <p class="modal-desc">
