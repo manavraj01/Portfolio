@@ -1,1393 +1,785 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manavraj Thakor - Future.init()</title>
-    <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Audiowide&family=Exo+2:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --electric-blue: #00d4ff;
-            --laser-pink: #ff006e;
-            --plasma-purple: #8338ec;
-            --neon-yellow: #ffbe0b;
-            --cyber-orange: #ff6b35;
-            --void-black: #000000;
-            --deep-space: #0a0e27;
-            --hologram: rgba(0, 212, 255, 0.15);
-            --text-glow: #ffffff;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Exo 2', sans-serif;
-            background: var(--void-black);
-            color: var(--text-glow);
-            overflow-x: hidden;
-            cursor: none;
-        }
-
-        /* BOOT SEQUENCE */
-        .boot-sequence {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--void-black);
-            z-index: 999999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            animation: bootFade 3.5s ease-in-out forwards;
-        }
-
-        @keyframes bootFade {
-            0%, 85% { opacity: 1; }
-            100% { opacity: 0; pointer-events: none; }
-        }
-
-        .boot-text {
-            font-family: 'Audiowide', cursive;
-            font-size: 1.5rem;
-            color: var(--electric-blue);
-            text-align: left;
-            line-height: 1.8;
-        }
-
-        .boot-line {
-            opacity: 0;
-            animation: typeLine 0.5s forwards;
-        }
-
-        .boot-line:nth-child(1) { animation-delay: 0.2s; }
-        .boot-line:nth-child(2) { animation-delay: 0.6s; }
-        .boot-line:nth-child(3) { animation-delay: 1.0s; }
-        .boot-line:nth-child(4) { animation-delay: 1.4s; }
-        .boot-line:nth-child(5) { animation-delay: 1.8s; }
-        .boot-line:nth-child(6) { animation-delay: 2.2s; }
-
-        @keyframes typeLine {
-            to { opacity: 1; }
-        }
-
-        .cursor-blink {
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0%, 49% { opacity: 1; }
-            50%, 100% { opacity: 0.3; }
-        }
-
-        /* HOLOGRAPHIC CURSOR */
-        .holo-cursor {
-            width: 40px;
-            height: 40px;
-            border: 2px solid var(--electric-blue);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: difference;
-            transition: all 0.15s cubic-bezier(0.075, 0.82, 0.165, 1);
-            animation: cursorPulse 2s infinite;
-        }
-
-        .holo-cursor::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 8px;
-            height: 8px;
-            background: var(--laser-pink);
-            border-radius: 50%;
-            box-shadow: 0 0 20px var(--laser-pink);
-        }
-
-        @keyframes cursorPulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.5); opacity: 0.7; }
-        }
-
-        /* DYNAMIC HOLOGRAPHIC BACKGROUND */
-        .holo-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 80%, var(--plasma-purple) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, var(--electric-blue) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, var(--laser-pink) 0%, transparent 40%);
-            opacity: 0.15;
-            filter: blur(60px);
-            animation: holoShift 20s ease infinite;
-            z-index: 0;
-        }
-
-        @keyframes holoShift {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(50px, -30px) scale(1.1); }
-            66% { transform: translate(-30px, 50px) scale(0.9); }
-        }
-
-        /* SCANLINE EFFECT */
-        .scanlines {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(
-                0deg,
-                rgba(0, 212, 255, 0.03) 0px,
-                transparent 1px,
-                transparent 2px,
-                rgba(0, 212, 255, 0.03) 3px
-            );
-            pointer-events: none;
-            z-index: 9998;
-            animation: scan 8s linear infinite;
-        }
-
-        @keyframes scan {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(10px); }
-        }
-
-        /* FLOATING HOLOGRAMS */
-        .hologram-particle {
-            position: fixed;
-            width: 100px;
-            height: 100px;
-            border: 1px solid var(--electric-blue);
-            opacity: 0.2;
-            animation: floatHolo 15s infinite ease-in-out;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        @keyframes floatHolo {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 0.2; }
-            25% { transform: translate(100px, -100px) rotate(90deg); opacity: 0.4; }
-            50% { transform: translate(-50px, -200px) rotate(180deg); opacity: 0.1; }
-            75% { transform: translate(150px, -100px) rotate(270deg); opacity: 0.3; }
-        }
-
-        /* NAVIGATION */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 2rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--electric-blue);
-            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
-        }
-
-        .logo {
-            font-family: 'Michroma', sans-serif;
-            font-size: 2rem;
-            background: linear-gradient(90deg, var(--electric-blue), var(--laser-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            filter: drop-shadow(0 0 20px var(--electric-blue));
-            animation: logoGlitch 5s infinite;
-        }
-
-        @keyframes logoGlitch {
-            0%, 96%, 100% { transform: translate(0); }
-            97% { transform: translate(3px, 0); }
-            98% { transform: translate(-3px, 2px); }
-            99% { transform: translate(2px, -2px); }
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-family: 'Audiowide', cursive;
-            color: var(--text-glow);
-            text-decoration: none;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            position: relative;
-            transition: all 0.3s;
-        }
-
-        .nav-links a::before {
-            content: '//';
-            position: absolute;
-            left: -20px;
-            opacity: 0;
-            transition: all 0.3s;
-            color: var(--laser-pink);
-        }
-
-        .nav-links a:hover {
-            color: var(--electric-blue);
-            text-shadow: 0 0 20px var(--electric-blue);
-            transform: translateX(10px);
-        }
-
-        .nav-links a:hover::before {
-            opacity: 1;
-            left: -15px;
-        }
-
-        /* HERO SECTION WITH MATRIX EFFECT */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            padding: 150px 5% 50px;
-            z-index: 10;
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            text-align: center;
-            animation: heroReveal 1.5s cubic-bezier(0.19, 1, 0.22, 1) 3.5s both;
-        }
-
-        @keyframes heroReveal {
-            from { 
-                opacity: 0; 
-                transform: translateY(100px) scale(0.8);
-                filter: blur(10px);
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
-
-        .hero-label {
-            font-family: 'Audiowide', cursive;
-            font-size: 1rem;
-            color: var(--laser-pink);
-            letter-spacing: 4px;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            animation: colorShift 3s infinite;
-        }
-
-        @keyframes colorShift {
-            0%, 100% { color: var(--laser-pink); text-shadow: 0 0 20px var(--laser-pink); }
-            33% { color: var(--electric-blue); text-shadow: 0 0 20px var(--electric-blue); }
-            66% { color: var(--neon-yellow); text-shadow: 0 0 20px var(--neon-yellow); }
-        }
-
-        h1 {
-            font-family: 'Michroma', sans-serif;
-            font-size: 7rem;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, 
-                var(--electric-blue) 0%, 
-                var(--laser-pink) 25%, 
-                var(--plasma-purple) 50%, 
-                var(--neon-yellow) 75%,
-                var(--electric-blue) 100%);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientFlow 5s ease infinite;
-            filter: drop-shadow(0 0 40px var(--electric-blue));
-        }
-
-        @keyframes gradientFlow {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .hero-subtitle {
-            font-size: 2rem;
-            color: var(--electric-blue);
-            margin-bottom: 2rem;
-            font-weight: 300;
-            text-shadow: 0 0 30px var(--electric-blue);
-        }
-
-        .hero-description {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.7);
-            max-width: 800px;
-            margin: 0 auto 3rem;
-        }
-
-        .cta-container {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .holo-btn {
-            padding: 1.2rem 3rem;
-            font-family: 'Audiowide', cursive;
-            font-size: 1rem;
-            border: 2px solid var(--electric-blue);
-            background: transparent;
-            color: var(--electric-blue);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-            clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
-        }
-
-        .holo-btn::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -100%;
-            width: 100%;
-            height: calc(100% + 4px);
-            background: linear-gradient(90deg, transparent, var(--electric-blue), transparent);
-            transition: left 0.5s;
-        }
-
-        .holo-btn:hover {
-            color: var(--void-black);
-            box-shadow: 0 0 40px var(--electric-blue), inset 0 0 40px var(--electric-blue);
-            transform: scale(1.05);
-        }
-
-        .holo-btn:hover::before {
-            left: 100%;
-        }
-
-        .holo-btn.secondary {
-            border-color: var(--laser-pink);
-            color: var(--laser-pink);
-        }
-
-        .holo-btn.secondary::before {
-            background: linear-gradient(90deg, transparent, var(--laser-pink), transparent);
-        }
-
-        .holo-btn.secondary:hover {
-            box-shadow: 0 0 40px var(--laser-pink), inset 0 0 40px var(--laser-pink);
-        }
-
-        .holo-btn.download {
-            border-color: var(--neon-yellow);
-            color: var(--neon-yellow);
-        }
-
-        .holo-btn.download::before {
-            background: linear-gradient(90deg, transparent, var(--neon-yellow), transparent);
-        }
-
-        .holo-btn.download:hover {
-            box-shadow: 0 0 40px var(--neon-yellow), inset 0 0 40px var(--neon-yellow);
-        }
-
-        /* MATRIX RAIN */
-        .matrix-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            opacity: 0.1;
-        }
-
-        /* CONNECTION ANIMATION */
-        @keyframes screenShake {
-            0%, 100% { transform: translate(0, 0); }
-            10% { transform: translate(-10px, 10px); }
-            20% { transform: translate(10px, -10px); }
-            30% { transform: translate(-10px, -10px); }
-            40% { transform: translate(10px, 10px); }
-            50% { transform: translate(-10px, 10px); }
-            60% { transform: translate(10px, -10px); }
-            70% { transform: translate(-10px, -10px); }
-            80% { transform: translate(10px, 10px); }
-            90% { transform: translate(-5px, 5px); }
-        }
-
-        @keyframes networkPulse {
-            0%, 100% { 
-                box-shadow: 0 0 20px var(--laser-pink), 
-                            0 0 40px var(--laser-pink),
-                            0 0 60px var(--laser-pink);
-            }
-            50% { 
-                box-shadow: 0 0 40px var(--laser-pink), 
-                            0 0 80px var(--laser-pink),
-                            0 0 120px var(--laser-pink);
-            }
-        }
-
-        .connecting-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 99999;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .connecting-overlay.active {
-            display: flex;
-        }
-
-        .network-text {
-            font-family: 'Audiowide', cursive;
-            font-size: 2.5rem;
-            color: var(--laser-pink);
-            text-shadow: 0 0 30px var(--laser-pink);
-            animation: networkPulse 1.5s infinite;
-        }
-
-        .network-bars {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .network-bar {
-            width: 8px;
-            height: 60px;
-            background: var(--electric-blue);
-            animation: barPulse 1s infinite ease-in-out;
-        }
-
-        .network-bar:nth-child(1) { animation-delay: 0s; }
-        .network-bar:nth-child(2) { animation-delay: 0.1s; }
-        .network-bar:nth-child(3) { animation-delay: 0.2s; }
-        .network-bar:nth-child(4) { animation-delay: 0.3s; }
-        .network-bar:nth-child(5) { animation-delay: 0.4s; }
-
-        @keyframes barPulse {
-            0%, 100% { transform: scaleY(0.4); opacity: 0.4; }
-            50% { transform: scaleY(1); opacity: 1; }
-        }
-
-        .body-shake {
-            animation: screenShake 0.5s ease-in-out;
-        }
-
-        /* SECTION STYLING */
-        section {
-            padding: 10rem 5%;
-            position: relative;
-            z-index: 10;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 5rem;
-            animation: sectionReveal 1s ease-out both;
-        }
-
-        @keyframes sectionReveal {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .section-title {
-            font-family: 'Michroma', sans-serif;
-            font-size: 4rem;
-            background: linear-gradient(90deg, var(--electric-blue), var(--laser-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--electric-blue), transparent);
-            box-shadow: 0 0 20px var(--electric-blue);
-        }
-
-        .section-subtitle {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 1.2rem;
-            margin-top: 2rem;
-        }
-
-        /* EXPERIENCE CARDS WITH TRAP ANIMATION */
-        .experience-grid {
-            display: grid;
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .exp-card {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(255, 0, 110, 0.05));
-            border: 1px solid var(--electric-blue);
-            padding: 3rem;
-            position: relative;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px));
-            overflow: hidden;
-        }
-
-        .exp-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.2), transparent);
-            transition: left 0.7s;
-        }
-
-        .exp-card:hover {
-            transform: translateY(-20px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.4), 0 0 60px rgba(255, 0, 110, 0.2);
-            border-color: var(--laser-pink);
-        }
-
-        .exp-card:hover::before {
-            left: 100%;
-        }
-
-        .exp-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            margin-bottom: 1.5rem;
-        }
-
-        .exp-role {
-            font-family: 'Audiowide', cursive;
-            font-size: 1.8rem;
-            color: var(--electric-blue);
-            margin-bottom: 0.5rem;
-        }
-
-        .exp-company {
-            font-size: 1.2rem;
-            color: var(--laser-pink);
-        }
-
-        .exp-date {
-            font-family: 'Audiowide', cursive;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
-        }
-
-        .exp-description {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-
-        /* PROJECTS WITH GLITCH EFFECT */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 3rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .project-card {
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid var(--plasma-purple);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s;
-            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
-        }
-
-        .project-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent 30%, rgba(255, 0, 110, 0.1) 50%, transparent 70%);
-            transform: translateX(-100%) translateY(-100%);
-            transition: transform 0.6s;
-        }
-
-        .project-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 50px rgba(131, 56, 236, 0.4);
-            border-color: var(--neon-yellow);
-        }
-
-        .project-card:hover::after {
-            transform: translateX(100%) translateY(100%);
-        }
-
-        .project-header {
-            padding: 2.5rem;
-            background: linear-gradient(135deg, rgba(131, 56, 236, 0.1), rgba(0, 212, 255, 0.1));
-            border-bottom: 1px solid var(--plasma-purple);
-        }
-
-        .project-title {
-            font-family: 'Audiowide', cursive;
-            font-size: 1.6rem;
-            color: var(--neon-yellow);
-            margin-bottom: 0.5rem;
-            text-shadow: 0 0 20px var(--neon-yellow);
-        }
-
-        .project-tech {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
-        }
-
-        .project-body {
-            padding: 2.5rem;
-        }
-
-        .project-description {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .project-link {
-            padding: 0.8rem 1.8rem;
-            border: 1px solid var(--electric-blue);
-            color: var(--electric-blue);
-            text-decoration: none;
-            font-family: 'Audiowide', cursive;
-            font-size: 0.85rem;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
-            background: var(--electric-blue);
-            transition: width 0.3s;
-            z-index: -1;
-        }
-
-        .project-link:hover {
-            color: var(--void-black);
-            box-shadow: 0 0 30px var(--electric-blue);
-        }
-
-        .project-link:hover::before {
-            width: 100%;
-        }
-
-        /* SKILLS HOLOGRAM CARDS */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .skill-card {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.03), rgba(255, 0, 110, 0.03));
-            border: 1px solid var(--electric-blue);
-            padding: 3rem 2rem;
-            text-align: center;
-            position: relative;
-            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            clip-path: polygon(10% 0%, 100% 0%, 100% 70%, 90% 100%, 0% 100%, 0% 30%);
-        }
-
-        .skill-card::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--electric-blue), var(--laser-pink), var(--plasma-purple), var(--neon-yellow));
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.5s;
-            clip-path: polygon(10% 0%, 100% 0%, 100% 70%, 90% 100%, 0% 100%, 0% 30%);
-        }
-
-        .skill-card:hover {
-            transform: scale(1.1) rotateY(5deg);
-            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
-        }
-
-        .skill-card:hover::before {
-            opacity: 0.5;
-        }
-
-        .skill-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            filter: drop-shadow(0 0 20px currentColor);
-        }
-
-        .skill-name {
-            font-family: 'Audiowide', cursive;
-            font-size: 1.3rem;
-            color: var(--electric-blue);
-            margin-bottom: 1rem;
-        }
-
-        .skill-list {
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 2;
-            font-size: 0.95rem;
-        }
-
-        /* CONTACT SECTION */
-        .contact-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .contact-card {
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid var(--laser-pink);
-            padding: 3rem 2rem;
-            position: relative;
-            transition: all 0.4s;
-            clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
-        }
-
-        .contact-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255, 0, 110, 0.1), rgba(0, 212, 255, 0.1));
-            opacity: 0;
-            transition: opacity 0.4s;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 15px 50px rgba(255, 0, 110, 0.4);
-        }
-
-        .contact-card:hover::before {
-            opacity: 1;
-        }
-
-        .contact-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            filter: drop-shadow(0 0 20px currentColor);
-        }
-
-        .contact-label {
-            font-family: 'Audiowide', cursive;
-            color: var(--laser-pink);
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact-info {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .contact-link {
-            color: var(--electric-blue);
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .contact-link:hover {
-            color: var(--laser-pink);
-            text-shadow: 0 0 20px var(--laser-pink);
-        }
-
-        /* FOOTER */
-        footer {
-            background: rgba(0, 0, 0, 0.9);
-            border-top: 1px solid var(--electric-blue);
-            padding: 3rem 5%;
-            text-align: center;
-            margin-top: 5rem;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-link {
-            color: var(--electric-blue);
-            text-decoration: none;
-            font-family: 'Audiowide', cursive;
-            transition: all 0.3s;
-        }
-
-        .footer-link:hover {
-            color: var(--laser-pink);
-            text-shadow: 0 0 20px var(--laser-pink);
-        }
-
-        .copyright {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            h1 { font-size: 3.5rem; }
-            .section-title { font-size: 2.5rem; }
-            nav { flex-direction: column; gap: 1rem; }
-            .nav-links { gap: 1.5rem; }
-            .projects-grid { grid-template-columns: 1fr; }
-            .cta-container { flex-direction: column; align-items: center; }
-        }
-
-        /* SCROLL REVEAL */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease-out;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manavraj Thakor — Backend &amp; ML Engineer</title>
+<meta name="description" content="Manavraj Thakor — Backend Developer, ML Engineer, and Systems/Cloud specialist. Portfolio of enterprise backend, cloud automation, machine learning, and generative AI projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <!-- BOOT SEQUENCE -->
-    <div class="boot-sequence">
-        <div class="boot-text">
-            <div class="boot-line">> Initializing system...</div>
-            <div class="boot-line">> Loading modules...</div>
-            <div class="boot-line">> Compiling portfolio...</div>
-            <div class="boot-line">> Establishing secure connection...</div>
-            <div class="boot-line">> Running diagnostics... [OK]</div>
-            <div class="boot-line">> Welcome <span class="cursor-blink">_</span></div>
-        </div>
-    </div>
 
-    <!-- CONNECTING OVERLAY -->
-    <div class="connecting-overlay" id="connectingOverlay">
-        <div class="network-text">ESTABLISHING CONNECTION...</div>
-        <div class="network-bars">
-            <div class="network-bar"></div>
-            <div class="network-bar"></div>
-            <div class="network-bar"></div>
-            <div class="network-bar"></div>
-            <div class="network-bar"></div>
-        </div>
-    </div>
+<div class="bg-glow"></div>
+<div class="bg-grid"></div>
 
-    <!-- HOLOGRAPHIC CURSOR -->
-    <div class="holo-cursor"></div>
-
-    <!-- BACKGROUNDS -->
-    <div class="holo-background"></div>
-    <div class="scanlines"></div>
-    <canvas class="matrix-bg" id="matrix"></canvas>
-
-    <!-- HOLOGRAM PARTICLES -->
-    <script>
-        for (let i = 0; i < 8; i++) {
-            const holo = document.createElement('div');
-            holo.className = 'hologram-particle';
-            holo.style.left = Math.random() * 100 + '%';
-            holo.style.top = Math.random() * 100 + '%';
-            holo.style.animationDelay = Math.random() * 5 + 's';
-            holo.style.transform = `rotate(${Math.random() * 360}deg)`;
-            document.body.appendChild(holo);
-        }
-    </script>
-
-    <!-- NAVIGATION -->
-    <nav>
-        <div class="logo">MT.INIT()</div>
-        <ul class="nav-links">
-            <li><a href="#about">ABOUT</a></li>
-            <li><a href="#experience">EXPERIENCE</a></li>
-            <li><a href="#education">EDUCATION</a></li>
-            <li><a href="#projects">PROJECTS</a></li>
-            <li><a href="#skills">SKILLS</a></li>
-            <li><a href="#contact">CONTACT</a></li>
-        </ul>
+<!-- NAV -->
+<header class="nav" id="siteNav">
+  <div class="container nav-inner">
+    <a href="#home" class="brand">Manavraj<span>.</span></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#experience" class="nav-link">Experience</a>
+      <a href="#education" class="nav-link">Education</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#contact" class="nav-link">Contact</a>
     </nav>
+    <div class="nav-actions">
+      <a href="./assets/resume.pdf" download class="btn btn-ghost nav-resume">Résumé</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
 
-    <!-- HERO SECTION -->
-    <section class="hero" id="about">
-        <div class="hero-content">
-            <div class="hero-label">Backend Developer • System Design • ML Engineer • Mobile Dev</div>
-            <h1>MANAVRAJ<br>THAKOR</h1>
-            <div class="hero-subtitle">Building Tomorrow's Technology Today</div>
-            <p class="hero-description">
-                Problem solver, full-stack developer, and ML specialist crafting scalable backend systems, intelligent solutions, 
-                and cross-platform mobile experiences. Transforming complex challenges into elegant code at AudvikLabs, 
-                working with enterprise clients like Hindustan Unilever to deliver cutting-edge technology solutions.
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <canvas class="hero-canvas" id="constellation"></canvas>
+    <div class="hero-inner">
+      <span class="eyebrow"><span class="eyebrow-dot"></span>Open to backend, ML &amp; systems engineering roles</span>
+      <h1>Manavraj Thakor</h1>
+      <p class="hero-role">Building <span class="role-rotator" id="roleRotator">scalable backend systems</span></p>
+      <p class="hero-desc">
+        Backend developer and ML engineer crafting reliable server-side systems, cloud automation
+        tooling, and intelligent applications — from Spring Boot &amp; Oracle at enterprise scale
+        to demand forecasting and retrieval-augmented generative AI.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">
+          View Projects
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+        <a href="./assets/resume.pdf" download class="btn btn-ghost">
+          Download Résumé
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16"/></svg>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div><span class="stat-num" data-count="10">0</span><span class="stat-label">Projects</span></div>
+        <div><span class="stat-num" data-count="4">0</span><span class="stat-label">Domains</span></div>
+        <div><span class="stat-num" data-count="20">0</span><span class="stat-label">Technologies</span></div>
+      </div>
+    </div>
+    <div class="scroll-cue"><span></span>Scroll</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container about-grid">
+      <div class="about-text reveal">
+        <span class="eyebrow">About</span>
+        <h2 style="margin-top:0.6rem;">Engineering systems that hold up under real conditions</h2>
+        <p>
+          I'm a backend-focused software engineer currently pursuing a <strong>Master of Applied
+          Computer Science at Dalhousie University</strong>, with hands-on experience shipping
+          production systems as a freelance developer at <strong>AudvikLabs</strong> for enterprise
+          clients including Hindustan Unilever.
+        </p>
+        <p>
+          My work spans four areas: <strong>enterprise backend systems</strong> (Java, Spring Boot,
+          Oracle), <strong>cloud &amp; systems automation</strong> (Python, Bash, Ansible, Linux),
+          <strong>machine learning</strong> (forecasting, classification, deployment), and
+          <strong>generative AI</strong> (RAG, LLM tooling, vector search). I like problems where
+          correctness, performance, and clean architecture all matter at once.
+        </p>
+      </div>
+      <div class="focus-list reveal reveal-group">
+        <div class="focus-item">
+          <div class="focus-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg></div>
+          <h4>Backend &amp; APIs</h4>
+          <p>Java, Spring Boot, REST, Hibernate/JPA, Oracle</p>
+        </div>
+        <div class="focus-item">
+          <div class="focus-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div>
+          <h4>Cloud &amp; Systems</h4>
+          <p>Linux, Ansible, monitoring, automation, SNMP</p>
+        </div>
+        <div class="focus-item">
+          <div class="focus-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5m5 14V9m5 10V4m5 15v-7"/></svg></div>
+          <h4>Machine Learning</h4>
+          <p>Forecasting, classification, XGBoost, deployment</p>
+        </div>
+        <div class="focus-item">
+          <div class="focus-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z"/></svg></div>
+          <h4>Generative AI</h4>
+          <p>RAG, LangChain, vector search, prompt design</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Experience</span>
+        <h2>Where I've been building</h2>
+        <p>Freelance and independent work across backend systems, mobile, and applied ML.</p>
+      </div>
+
+      <div class="timeline reveal-group">
+        <div class="timeline-item is-current reveal">
+          <div class="timeline-dot"></div>
+          <div class="tl-head">
+            <div>
+              <div class="tl-role">Backend Developer &amp; ML Engineer</div>
+              <div class="tl-org">AudvikLabs · Freelance</div>
+            </div>
+            <span class="tl-date">Present</span>
+          </div>
+          <p class="tl-desc">
+            Architecting scalable backend systems and deploying production-grade ML models for
+            enterprise clients. Building RESTful APIs, microservices, and ML pipelines that power
+            intelligent applications — collaborating with Fortune 500 companies like Hindustan
+            Unilever on cloud infrastructure, high-performance computing, and AI-driven analytics.
+          </p>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="tl-head">
+            <div>
+              <div class="tl-role">Flutter Developer</div>
+              <div class="tl-org">AudvikLabs</div>
+            </div>
+            <span class="tl-date">2023 – 2024</span>
+          </div>
+          <p class="tl-desc">
+            Developed cross-platform mobile applications using Flutter and Dart, delivering
+            pixel-perfect experiences across iOS and Android. Implemented complex state management,
+            integrated real-time APIs, and optimized performance under a clean architecture.
+          </p>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="tl-head">
+            <div>
+              <div class="tl-role">Machine Learning Specialist</div>
+              <div class="tl-org">Independent Projects</div>
+            </div>
+            <span class="tl-date">2022 – Present</span>
+          </div>
+          <p class="tl-desc">
+            Building end-to-end ML solutions from data preprocessing to model deployment —
+            predictive analytics, time-series forecasting, and classification — with Python
+            backends and modern frontends demonstrating the full data science lifecycle.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Education</span>
+        <h2>Academic foundation</h2>
+        <p>Formal training underpinning the systems and software I build.</p>
+      </div>
+
+      <div class="timeline reveal-group">
+        <div class="timeline-item is-current reveal">
+          <div class="timeline-dot"></div>
+          <div class="tl-head">
+            <div>
+              <div class="tl-role">Master of Applied Computer Science</div>
+              <div class="tl-org">Dalhousie University</div>
+            </div>
+            <span class="tl-date">Current</span>
+          </div>
+          <p class="tl-desc">
+            Advanced coursework in system architecture, distributed systems, and applied
+            computational theory at one of Canada's leading research universities.
+          </p>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="tl-head">
+            <div>
+              <div class="tl-role">Bachelor of Technology in Computer Science</div>
+              <div class="tl-org">Charusat University</div>
+            </div>
+            <span class="tl-date">Completed</span>
+          </div>
+          <p class="tl-desc">
+            Strong foundations in data structures, algorithms, software engineering, and database
+            systems, applied through hands-on projects in ML, web, and mobile development.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Projects</span>
+        <h2>Selected work across four domains</h2>
+        <p>Enterprise backend systems, cloud &amp; systems automation, machine learning, and generative AI.</p>
+      </div>
+
+      <div class="filter-bar reveal">
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="backend"><span class="dot" style="color:var(--c-backend)"></span>Backend &amp; Enterprise</button>
+        <button class="filter-btn" data-filter="cloud"><span class="dot" style="color:var(--c-cloud)"></span>Cloud &amp; Systems</button>
+        <button class="filter-btn" data-filter="ml"><span class="dot" style="color:var(--c-ml)"></span>Machine Learning</button>
+        <button class="filter-btn" data-filter="genai"><span class="dot" style="color:var(--c-genai)"></span>Generative AI</button>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- 1: Order Management -->
+        <article class="project-card show" data-category="backend">
+          <div class="card-visual viz-backend">
+            <span class="card-cat-tag">Backend</span>
+            <svg viewBox="0 0 300 148" preserveAspectRatio="xMidYMid meet">
+              <rect class="node" x="14" y="58" width="56" height="26" rx="5"/>
+              <text class="node-label" x="42" y="90" text-anchor="middle">Client</text>
+              <rect class="node" x="122" y="58" width="56" height="26" rx="5"/>
+              <text class="node-label" x="150" y="90" text-anchor="middle">Spring API</text>
+              <rect class="node" x="230" y="58" width="56" height="26" rx="5"/>
+              <text class="node-label" x="258" y="90" text-anchor="middle">Oracle DB</text>
+              <path class="path" d="M70 71 H122"/>
+              <path class="path" d="M178 71 H230"/>
+              <circle class="pulse" r="3">
+                <animateMotion dur="2.6s" repeatCount="indefinite" path="M70 71 H286" />
+              </circle>
+            </svg>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">E-Commerce Order Management System</h3>
+            <div class="project-tech">
+              <span class="tech-pill">Java 17</span><span class="tech-pill">Spring Boot</span>
+              <span class="tech-pill">Hibernate/JPA</span><span class="tech-pill">Oracle</span>
+              <span class="tech-pill">REST</span>
+            </div>
+            <p class="project-desc">
+              Multi-module order platform handling order creation, inventory validation, payment
+              status, and admin dashboards. Normalized schema across Orders, Customers, Products,
+              Inventory, and Payments, with PL/SQL procedures for status updates and reporting.
+              80%+ test coverage with JUnit &amp; Mockito.
             </p>
-            <div class="cta-container">
-                <a href="#projects" class="holo-btn">EXPLORE WORK</a>
-                <a href="#contact" class="holo-btn secondary" id="initiateContact">INITIATE CONTACT</a>
-                <a href="./assets/resume.pdf" download class="holo-btn download">DOWNLOAD RESUME</a>
+            <div class="project-links">
+              <span class="project-status"><span class="dot"></span>In development</span>
             </div>
+          </div>
+        </article>
+
+        <!-- 2: Inventory & Warehouse -->
+        <article class="project-card show" data-category="backend">
+          <div class="card-visual viz-backend">
+            <span class="card-cat-tag">Backend</span>
+            <svg viewBox="0 0 300 148" preserveAspectRatio="xMidYMid meet">
+              <rect class="node" x="14" y="58" width="56" height="26" rx="5"/>
+              <text class="node-label" x="42" y="90" text-anchor="middle">JDBC</text>
+              <rect class="node" x="122" y="58" width="56" height="26" rx="5"/>
+              <text class="node-label" x="150" y="90" text-anchor="middle">Warehouse</text>
+              <rect class="node" x="230" y="58" width="56" height="26" rx="5"/>
+              <text class="node-label" x="258" y="90" text-anchor="middle">PL/SQL</text>
+              <path class="path" d="M70 71 H122"/>
+              <path class="path" d="M178 71 H230"/>
+              <circle class="pulse" r="3">
+                <animateMotion dur="2.6s" repeatCount="indefinite" path="M286 71 H70" />
+              </circle>
+            </svg>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Inventory &amp; Warehouse Management Module</h3>
+            <div class="project-tech">
+              <span class="tech-pill">Core Java</span><span class="tech-pill">JDBC</span>
+              <span class="tech-pill">Oracle SQL / PL-SQL</span><span class="tech-pill">Tomcat</span>
+            </div>
+            <p class="project-desc">
+              Stock tracking across multiple warehouse locations with automated low-stock alerts
+              and reorder triggers implemented as PL/SQL procedures. Configuration-driven design
+              lets new warehouse locations be added without code changes.
+            </p>
+            <div class="project-links">
+              <span class="project-status"><span class="dot"></span>In development</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3: Ticketing & SLA -->
+        <article class="project-card show" data-category="backend">
+          <div class="card-visual viz-backend">
+            <span class="card-cat-tag">Backend</span>
+            <svg viewBox="0 0 300 148" preserveAspectRatio="xMidYMid meet">
+              <rect class="node" x="14" y="58" width="56" height="26" rx="5"/>
+              <text class="node-label" x="42" y="90" text-anchor="middle">Ticket</text>
+              <rect class="node" x="122" y="58" width="56" height="26" rx="5"/>
+              <text class="node-label" x="150" y="90" text-anchor="middle">SLA Timer</text>
+              <rect class="node" x="230" y="58" width="56" height="26" rx="5"/>
+              <text class="node-label" x="258" y="90" text-anchor="middle">Dashboard</text>
+              <path class="path" d="M70 71 H122"/>
+              <path class="path" d="M178 71 H230"/>
+              <circle class="pulse" r="3">
+                <animateMotion dur="2.6s" repeatCount="indefinite" path="M70 71 H286" />
+              </circle>
+            </svg>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Customer Support Ticketing &amp; SLA Tracker</h3>
+            <div class="project-tech">
+              <span class="tech-pill">Java</span><span class="tech-pill">Spring Boot</span>
+              <span class="tech-pill">Oracle</span><span class="tech-pill">REST</span>
+              <span class="tech-pill">React</span>
+            </div>
+            <p class="project-desc">
+              Ticketing platform with configurable SLA timers, role-based access (Agent,
+              Supervisor, Admin), and full lifecycle management from Open through Closed. PL/SQL
+              procedures compute SLA breach reports and daily summary metrics for stakeholders.
+            </p>
+            <div class="project-links">
+              <span class="project-status"><span class="dot"></span>In development</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4: Network Monitoring -->
+        <article class="project-card show" data-category="cloud">
+          <div class="card-visual viz-cloud">
+            <span class="card-cat-tag">Cloud &amp; Systems</span>
+            <svg viewBox="0 0 300 148" preserveAspectRatio="xMidYMid meet">
+              <circle class="ring r1" cx="150" cy="60" r="8"/>
+              <circle class="ring r2" cx="150" cy="60" r="8"/>
+              <circle class="ring r3" cx="150" cy="60" r="8"/>
+              <line class="link" x1="150" y1="60" x2="80" y2="30"/>
+              <line class="link" x1="150" y1="60" x2="220" y2="30"/>
+              <line class="link" x1="150" y1="60" x2="80" y2="90"/>
+              <line class="link" x1="150" y1="60" x2="220" y2="90"/>
+              <circle class="hub" cx="150" cy="60" r="9"/>
+              <circle class="satellite" cx="80" cy="30" r="5"/>
+              <circle class="satellite" cx="220" cy="30" r="5"/>
+              <circle class="satellite" cx="80" cy="90" r="5"/>
+              <circle class="satellite" cx="220" cy="90" r="5"/>
+              <g transform="translate(100,118)">
+                <rect class="bar" x="0" y="0" width="6" height="18" style="animation-delay:0s"/>
+                <rect class="bar" x="12" y="0" width="6" height="18" style="animation-delay:.15s"/>
+                <rect class="bar" x="24" y="0" width="6" height="18" style="animation-delay:.3s"/>
+                <rect class="bar" x="36" y="0" width="6" height="18" style="animation-delay:.45s"/>
+                <rect class="bar" x="48" y="0" width="6" height="18" style="animation-delay:.6s"/>
+                <rect class="bar" x="60" y="0" width="6" height="18" style="animation-delay:.75s"/>
+                <rect class="bar" x="72" y="0" width="6" height="18" style="animation-delay:.9s"/>
+                <rect class="bar" x="84" y="0" width="6" height="18" style="animation-delay:1.05s"/>
+              </g>
+            </svg>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Network Configuration &amp; Monitoring Automation Tool</h3>
+            <div class="project-tech">
+              <span class="tech-pill">Python</span><span class="tech-pill">Bash</span>
+              <span class="tech-pill">Ansible</span><span class="tech-pill">SNMP</span>
+              <span class="tech-pill">Linux</span>
+            </div>
+            <p class="project-desc">
+              Monitoring architecture with a polling agent, log parser, and alerting module,
+              automating routine diagnostics across simulated multi-node hosts. Ansible playbooks
+              push configuration changes; SNMP polling watches device health and alerts on
+              threshold breaches.
+            </p>
+            <div class="project-links">
+              <span class="project-status"><span class="dot"></span>In development</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5: System Health & Traceability -->
+        <article class="project-card show" data-category="cloud">
+          <div class="card-visual viz-cloud">
+            <span class="card-cat-tag">Cloud &amp; Systems</span>
+            <svg viewBox="0 0 300 148" preserveAspectRatio="xMidYMid meet">
+              <circle class="ring r1" cx="150" cy="60" r="8"/>
+              <circle class="ring r2" cx="150" cy="60" r="8"/>
+              <circle class="ring r3" cx="150" cy="60" r="8"/>
+              <line class="link" x1="150" y1="60" x2="80" y2="30"/>
+              <line class="link" x1="150" y1="60" x2="220" y2="30"/>
+              <line class="link" x1="150" y1="60" x2="80" y2="90"/>
+              <line class="link" x1="150" y1="60" x2="220" y2="90"/>
+              <circle class="hub" cx="150" cy="60" r="9"/>
+              <circle class="satellite" cx="80" cy="30" r="5"/>
+              <circle class="satellite" cx="220" cy="30" r="5"/>
+              <circle class="satellite" cx="80" cy="90" r="5"/>
+              <circle class="satellite" cx="220" cy="90" r="5"/>
+              <g transform="translate(100,118)">
+                <rect class="bar" x="0" y="0" width="6" height="18" style="animation-delay:.2s"/>
+                <rect class="bar" x="12" y="0" width="6" height="18" style="animation-delay:.35s"/>
+                <rect class="bar" x="24" y="0" width="6" height="18" style="animation-delay:.5s"/>
+                <rect class="bar" x="36" y="0" width="6" height="18" style="animation-delay:.65s"/>
+                <rect class="bar" x="48" y="0" width="6" height="18" style="animation-delay:.8s"/>
+                <rect class="bar" x="60" y="0" width="6" height="18" style="animation-delay:.95s"/>
+                <rect class="bar" x="72" y="0" width="6" height="18" style="animation-delay:1.1s"/>
+                <rect class="bar" x="84" y="0" width="6" height="18" style="animation-delay:1.25s"/>
+              </g>
+            </svg>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">System Health &amp; Requirements Traceability Dashboard</h3>
+            <div class="project-tech">
+              <span class="tech-pill">Python</span><span class="tech-pill">Flask</span>
+              <span class="tech-pill">SQLite</span><span class="tech-pill">Bash</span>
+              <span class="tech-pill">Linux</span>
+            </div>
+            <p class="project-desc">
+              OS-level health monitoring (CPU, memory, disk I/O, services) paired with a
+              requirements-traceability tool linking requirements to design docs and test cases
+              in SQLite. Bash scripts automate status checks and daily metrics aggregation,
+              visualized in a lightweight Flask dashboard.
+            </p>
+            <div class="project-links">
+              <span class="project-status"><span class="dot"></span>In development</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6: Grocery Demand Forecasting -->
+        <article class="project-card show" data-category="ml">
+          <div class="card-visual viz-ml">
+            <span class="card-cat-tag">ML</span>
+            <svg viewBox="0 0 300 148" preserveAspectRatio="xMidYMid meet">
+              <line class="grid-line" x1="20" y1="30" x2="280" y2="30"/>
+              <line class="grid-line" x1="20" y1="65" x2="280" y2="65"/>
+              <line class="grid-line" x1="20" y1="100" x2="280" y2="100"/>
+              <polyline class="actual-line" points="24,95 55,80 86,88 117,60 148,70 179,42 210,55" />
+              <polyline class="forecast-line" points="210,55 240,48 271,35" />
+              <circle class="pt" cx="24" cy="95" r="3"/><circle class="pt" cx="55" cy="80" r="3"/>
+              <circle class="pt" cx="86" cy="88" r="3"/><circle class="pt" cx="117" cy="60" r="3"/>
+              <circle class="pt" cx="148" cy="70" r="3"/><circle class="pt" cx="179" cy="42" r="3"/>
+              <circle class="pt" cx="210" cy="55" r="3"/>
+            </svg>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Grocery Demand Forecasting &amp; Inventory Optimization</h3>
+            <div class="project-tech">
+              <span class="tech-pill">Python</span><span class="tech-pill">XGBoost</span>
+              <span class="tech-pill">Prophet</span><span class="tech-pill">SQL</span>
+              <span class="tech-pill">Streamlit</span>
+            </div>
+            <p class="project-desc">
+              SKU-level demand forecasting using engineered time-series features — rolling
+              averages, lag variables, holiday/promotion flags — evaluated by MAPE against a
+              naive baseline. Forecasts feed an inventory layer that recommends reorder points,
+              visualized in a drift-monitoring Streamlit dashboard.
+            </p>
+            <div class="project-links">
+              <span class="project-status"><span class="dot"></span>In development</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 7: Rossmann (existing, real link) -->
+        <article class="project-card show" data-category="ml">
+          <div class="card-visual viz-ml">
+            <span class="card-cat-tag">ML</span>
+            <svg viewBox="0 0 300 148" preserveAspectRatio="xMidYMid meet">
+              <line class="grid-line" x1="20" y1="30" x2="280" y2="30"/>
+              <line class="grid-line" x1="20" y1="65" x2="280" y2="65"/>
+              <line class="grid-line" x1="20" y1="100" x2="280" y2="100"/>
+              <polyline class="actual-line" points="24,105 55,92 86,96 117,68 148,75 179,50 210,60" />
+              <polyline class="forecast-line" points="210,60 240,52 271,40" />
+              <circle class="pt" cx="24" cy="105" r="3"/><circle class="pt" cx="55" cy="92" r="3"/>
+              <circle class="pt" cx="86" cy="96" r="3"/><circle class="pt" cx="117" cy="68" r="3"/>
+              <circle class="pt" cx="148" cy="75" r="3"/><circle class="pt" cx="179" cy="50" r="3"/>
+              <circle class="pt" cx="210" cy="60" r="3"/>
+            </svg>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Rossmann Store Sales Forecasting</h3>
+            <div class="project-tech">
+              <span class="tech-pill">Python</span><span class="tech-pill">XGBoost</span>
+              <span class="tech-pill">Pandas</span><span class="tech-pill">Time Series</span>
+            </div>
+            <p class="project-desc">
+              Ensemble-learning sales forecasting system with engineered historical, seasonal, and
+              promotional features, with hyperparameter tuning for high-accuracy retail store
+              sales predictions.
+            </p>
+            <div class="project-links">
+              <a href="https://github.com/manavraj01/Rossmann_Store_Sales" target="_blank" rel="noopener" class="project-link">
+                View Code
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 8: NYC Taxi (existing, real links) -->
+        <article class="project-card show" data-category="ml">
+          <div class="card-visual viz-ml">
+            <span class="card-cat-tag">ML</span>
+            <svg viewBox="0 0 300 148" preserveAspectRatio="xMidYMid meet">
+              <line class="grid-line" x1="20" y1="30" x2="280" y2="30"/>
+              <line class="grid-line" x1="20" y1="65" x2="280" y2="65"/>
+              <line class="grid-line" x1="20" y1="100" x2="280" y2="100"/>
+              <polyline class="actual-line" points="24,90 55,95 86,72 117,80 148,55 179,64 210,45" />
+              <polyline class="forecast-line" points="210,45 240,50 271,32" />
+              <circle class="pt" cx="24" cy="90" r="3"/><circle class="pt" cx="55" cy="95" r="3"/>
+              <circle class="pt" cx="86" cy="72" r="3"/><circle class="pt" cx="117" cy="80" r="3"/>
+              <circle class="pt" cx="148" cy="55" r="3"/><circle class="pt" cx="179" cy="64" r="3"/>
+              <circle class="pt" cx="210" cy="45" r="3"/>
+            </svg>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">NYC Taxi Fare Prediction</h3>
+            <div class="project-tech">
+              <span class="tech-pill">Python</span><span class="tech-pill">TensorFlow</span>
+              <span class="tech-pill">Vue.js</span><span class="tech-pill">Flask</span>
+            </div>
+            <p class="project-desc">
+              Full-stack ML application predicting taxi fares with a deep learning model —
+              Vue.js frontend, Flask API, and TensorFlow inference — demonstrating end-to-end ML
+              deployment.
+            </p>
+            <div class="project-links">
+              <a href="https://github.com/manavraj01/New-York-Fare-Price-Prediction" target="_blank" rel="noopener" class="project-link">
+                Analysis
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+              </a>
+              <a href="https://github.com/manavraj01/New-York-Taxi-Fare-Prediction-Backend-" target="_blank" rel="noopener" class="project-link">
+                Backend
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 9: Telco Churn (existing, real links) -->
+        <article class="project-card show" data-category="ml">
+          <div class="card-visual viz-ml">
+            <span class="card-cat-tag">ML</span>
+            <svg viewBox="0 0 300 148" preserveAspectRatio="xMidYMid meet">
+              <line class="grid-line" x1="20" y1="30" x2="280" y2="30"/>
+              <line class="grid-line" x1="20" y1="65" x2="280" y2="65"/>
+              <line class="grid-line" x1="20" y1="100" x2="280" y2="100"/>
+              <polyline class="actual-line" points="24,100 55,85 86,90 117,62 148,68 179,45 210,52" />
+              <polyline class="forecast-line" points="210,52 240,44 271,30" />
+              <circle class="pt" cx="24" cy="100" r="3"/><circle class="pt" cx="55" cy="85" r="3"/>
+              <circle class="pt" cx="86" cy="90" r="3"/><circle class="pt" cx="117" cy="62" r="3"/>
+              <circle class="pt" cx="148" cy="68" r="3"/><circle class="pt" cx="179" cy="45" r="3"/>
+              <circle class="pt" cx="210" cy="52" r="3"/>
+            </svg>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Telco Churn Prediction</h3>
+            <div class="project-tech">
+              <span class="tech-pill">Python</span><span class="tech-pill">Neural Networks</span>
+              <span class="tech-pill">Streamlit</span>
+            </div>
+            <p class="project-desc">
+              Customer churn classification system with an interactive web app for real-time
+              churn-risk assessment, helping identify at-risk customers and improve retention.
+            </p>
+            <div class="project-links">
+              <a href="https://github.com/manavraj01/Telco-Churn-Prediction" target="_blank" rel="noopener" class="project-link">
+                Model
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+              </a>
+              <a href="https://github.com/manavraj01/Telco-Churn-Prediction-App" target="_blank" rel="noopener" class="project-link">
+                App
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 10: GenAI Product Assistant -->
+        <article class="project-card show" data-category="genai">
+          <div class="card-visual viz-genai">
+            <span class="card-cat-tag">Generative AI</span>
+            <svg viewBox="0 0 300 148" preserveAspectRatio="xMidYMid meet">
+              <g class="drift1"><line class="edge" x1="70" y1="40" x2="120" y2="55"/><line class="edge" x1="70" y1="40" x2="55" y2="70"/><circle class="dot" cx="70" cy="40" r="4"/></g>
+              <g class="drift2"><line class="edge" x1="120" y1="55" x2="170" y2="35"/><line class="edge" x1="120" y1="55" x2="140" y2="90"/><circle class="dot" cx="120" cy="55" r="5"/></g>
+              <g class="drift3"><line class="edge" x1="170" y1="35" x2="220" y2="50"/><circle class="dot" cx="170" cy="35" r="4"/></g>
+              <g class="drift1"><circle class="dot" cx="55" cy="70" r="3"/></g>
+              <g class="drift2"><circle class="dot" cx="140" cy="90" r="3.5"/></g>
+              <g class="drift3"><circle class="dot" cx="220" cy="50" r="4.5"/></g>
+              <g class="drift1"><line class="edge" x1="220" y1="50" x2="250" y2="30"/><circle class="dot" cx="250" cy="30" r="3"/></g>
+            </svg>
+            <div class="token-row">
+              <span class="token-chip">gluten-free</span>
+              <span class="token-chip">under $5</span>
+              <span class="token-chip">retrieve</span>
+              <span class="token-chip">rank</span>
+              <span class="token-chip">generate</span>
+            </div>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Generative AI Product Description &amp; Recommendation Assistant</h3>
+            <div class="project-tech">
+              <span class="tech-pill">Python</span><span class="tech-pill">LangChain</span>
+              <span class="tech-pill">FAISS</span><span class="tech-pill">Streamlit</span>
+            </div>
+            <p class="project-desc">
+              RAG-based assistant that generates SEO-friendly product descriptions from structured
+              attributes and supports natural-language product search — e.g. "gluten-free snacks
+              under $5" — over a vector-indexed catalog. Few-shot prompt templates reduce
+              hallucinated claims, validated against source data.
+            </p>
+            <div class="project-links">
+              <span class="project-status"><span class="dot"></span>In development</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Skills</span>
+        <h2>Technologies I work with</h2>
+        <p>A practical toolkit spanning backend systems, cloud, mobile, and data.</p>
+      </div>
+
+      <div class="skills-grid reveal-group">
+        <div class="skill-card reveal">
+          <div class="skill-top">
+            <div class="skill-icon" style="background:rgba(167,139,250,0.12); color:var(--c-backend);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <div class="skill-name">Backend Development</div>
+          </div>
+          <div class="skill-tags">
+            <span>Java / Spring Boot</span><span>Python</span><span>FastAPI</span><span>REST APIs</span><span>Microservices</span><span>Docker</span>
+          </div>
         </div>
-    </section>
 
-    <!-- EXPERIENCE SECTION -->
-    <section id="experience">
-        <div class="section-header reveal">
-            <h2 class="section-title">Experience Matrix</h2>
-            <p class="section-subtitle">Building the future across multiple domains</p>
+        <div class="skill-card reveal">
+          <div class="skill-top">
+            <div class="skill-icon" style="background:rgba(56,189,248,0.12); color:var(--c-cloud);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+            </div>
+            <div class="skill-name">Cloud &amp; DevOps</div>
+          </div>
+          <div class="skill-tags">
+            <span>AWS</span><span>Azure</span><span>Ansible</span><span>CI/CD</span><span>Linux</span><span>PostgreSQL</span>
+          </div>
         </div>
 
-        <div class="experience-grid">
-            <div class="exp-card reveal">
-                <div class="exp-header">
-                    <div>
-                        <h3 class="exp-role">Backend Developer & ML Engineer</h3>
-                        <div class="exp-company">AudvikLabs  • Freelance</div>
-                    </div>
-                    <div class="exp-date">PRESENT</div>
-                </div>
-                <p class="exp-description">
-                    Architecting scalable backend systems and deploying production-grade ML models for enterprise clients. 
-                    Building RESTful APIs, microservices, and ML pipelines that power intelligent applications. 
-                    Collaborating with Fortune 500 companies like Hindustan Unilever to deliver custom solutions 
-                    in cloud infrastructure, high-performance computing, and AI-driven analytics.
-                </p>
+        <div class="skill-card reveal">
+          <div class="skill-top">
+            <div class="skill-icon" style="background:rgba(52,211,153,0.12); color:var(--c-ml);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="6" height="6"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg>
             </div>
-
-            <div class="exp-card reveal">
-                <div class="exp-header">
-                    <div>
-                        <h3 class="exp-role">Flutter Developer</h3>
-                        <div class="exp-company">AudvikLabs </div>
-                    </div>
-                    <div class="exp-date">2023 - 2024</div>
-                </div>
-                <p class="exp-description">
-                    Developed cross-platform mobile applications using Flutter and Dart, delivering pixel-perfect 
-                    experiences across iOS and Android. Implemented complex state management patterns, integrated 
-                    real-time APIs, and built responsive UIs that seamlessly adapt to different screen sizes. 
-                    Focused on performance optimization and clean architecture principles.
-                </p>
-            </div>
-
-            <div class="exp-card reveal">
-                <div class="exp-header">
-                    <div>
-                        <h3 class="exp-role">Machine Learning Specialist</h3>
-                        <div class="exp-company">Independent Projects</div>
-                    </div>
-                    <div class="exp-date">2022 - PRESENT</div>
-                </div>
-                <p class="exp-description">
-                    Building end-to-end ML solutions from data preprocessing to model deployment. 
-                    Expertise in predictive analytics, time series forecasting, and classification problems. 
-                    Developed full-stack ML applications with Python backends and modern frontends, 
-                    demonstrating the complete data science lifecycle in production environments.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- EDUCATION SECTION -->
-    <section id="education">
-        <div class="section-header reveal">
-            <h2 class="section-title">Knowledge Database</h2>
-            <p class="section-subtitle">Academic foundations and continuous learning</p>
+            <div class="skill-name">Machine Learning</div>
+          </div>
+          <div class="skill-tags">
+            <span>TensorFlow</span><span>Scikit-learn</span><span>XGBoost</span><span>Neural Networks</span><span>Model Deployment</span>
+          </div>
         </div>
 
-        <div class="experience-grid">
-            <div class="exp-card reveal">
-                <div class="exp-header">
-                    <div>
-                        <h3 class="exp-role">Master of Applied Computer Science</h3>
-                        <div class="exp-company">Dalhousie University</div>
-                    </div>
-                    <div class="exp-date">CURRENT</div>
-                </div>
-                <p class="exp-description">
-                    Currently pursuing advanced studies in applied computer science, focusing on cutting-edge technologies, 
-                    system architecture, and practical application of computational theories. Deepening expertise in 
-                    distributed systems, advanced algorithms, and software engineering principles at one of Canada's 
-                    leading research universities.
-                </p>
+        <div class="skill-card reveal">
+          <div class="skill-top">
+            <div class="skill-icon" style="background:rgba(251,113,133,0.12); color:var(--c-genai);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.2 6.6L21 11l-6.8 2.4L12 20l-2.2-6.6L3 11l6.8-2.4z"/></svg>
             </div>
-
-            <div class="exp-card reveal">
-                <div class="exp-header">
-                    <div>
-                        <h3 class="exp-role">Bachelor of Technology in Computer Science</h3>
-                        <div class="exp-company">Charusat University</div>
-                    </div>
-                    <div class="exp-date">COMPLETED</div>
-                </div>
-                <p class="exp-description">
-                    Built strong foundations in computer science fundamentals including data structures, algorithms, 
-                    software engineering, and database systems. Developed practical skills through hands-on projects 
-                    in machine learning, web development, and mobile application development. Graduated with comprehensive 
-                    knowledge of modern programming paradigms and software development methodologies.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROJECTS SECTION -->
-    <section id="projects">
-        <div class="section-header reveal">
-            <h2 class="section-title">Project Archives</h2>
-            <p class="section-subtitle">From concept to deployment - real-world solutions</p>
+            <div class="skill-name">Generative AI</div>
+          </div>
+          <div class="skill-tags">
+            <span>LangChain</span><span>RAG</span><span>FAISS / Chroma</span><span>Prompt Engineering</span>
+          </div>
         </div>
 
-        <div class="projects-grid">
-            <div class="project-card reveal">
-                <div class="project-header">
-                    <h3 class="project-title">Rossmann Store Sales</h3>
-                    <div class="project-tech">Python • XGBoost • Pandas • Time Series</div>
-                </div>
-                <div class="project-body">
-                    <p class="project-description">
-                        Advanced sales forecasting system using ensemble learning and time series analysis. 
-                        Engineered features from historical data, optimized hyperparameters, and achieved 
-                        high prediction accuracy for retail store sales forecasting.
-                    </p>
-                    <div class="project-links">
-                        <a href="https://github.com/manavraj01/Rossmann_Store_Sales" target="_blank" class="project-link">VIEW CODE</a>
-                    </div>
-                </div>
+        <div class="skill-card reveal">
+          <div class="skill-top">
+            <div class="skill-icon" style="background:rgba(91,140,255,0.12); color:var(--accent);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
             </div>
-
-            <div class="project-card reveal">
-                <div class="project-header">
-                    <h3 class="project-title">NYC Taxi Fare Prediction</h3>
-                    <div class="project-tech">Python • TensorFlow • Vue.js • Flask • ML</div>
-                </div>
-                <div class="project-body">
-                    <p class="project-description">
-                        Complete full-stack ML application predicting taxi fares using deep learning. 
-                        Built with Vue.js frontend for user interaction, Flask backend for API serving, 
-                        and TensorFlow for model inference. Demonstrates end-to-end ML deployment.
-                    </p>
-                    <div class="project-links">
-                        <a href="https://github.com/manavraj01/New-York-Fare-Price-Prediction" target="_blank" class="project-link">ANALYSIS</a>
-                        <a href="https://github.com/manavraj01/New-York-Taxi-Fare-Prediction-Backend-" target="_blank" class="project-link">BACKEND</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card reveal">
-                <div class="project-header">
-                    <h3 class="project-title">Telco Churn Prediction</h3>
-                    <div class="project-tech">Python • Neural Networks • Classification • Streamlit</div>
-                </div>
-                <div class="project-body">
-                    <p class="project-description">
-                        Customer churn prediction system using advanced classification algorithms. 
-                        Built interactive web application for real-time churn risk assessment, 
-                        helping telecommunications companies identify at-risk customers and improve retention.
-                    </p>
-                    <div class="project-links">
-                        <a href="https://github.com/manavraj01/Telco-Churn-Prediction" target="_blank" class="project-link">MODEL</a>
-                        <a href="https://github.com/manavraj01/Telco-Churn-Prediction-App" target="_blank" class="project-link">APP</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SKILLS SECTION -->
-    <section id="skills">
-        <div class="section-header reveal">
-            <h2 class="section-title">Technology Arsenal</h2>
-            <p class="section-subtitle">Mastering the tools that shape the future</p>
+            <div class="skill-name">Mobile Development</div>
+          </div>
+          <div class="skill-tags">
+            <span>Flutter</span><span>Dart</span><span>iOS &amp; Android</span><span>Firebase</span><span>State Management</span>
+          </div>
         </div>
 
-        <div class="skills-grid">
-            <div class="skill-card reveal">
-                <div class="skill-icon" style="color: var(--electric-blue);">⚡</div>
-                <div class="skill-name">Backend Development</div>
-                <div class="skill-list">
-                    Python<br>
-                    FastAPI • Flask • Django Rest Framework<br>
-                    REST APIs<br>
-                    Microservices<br>
-                    Docker • K8s<br>
-                    System Design
-                </div>
+        <div class="skill-card reveal">
+          <div class="skill-top">
+            <div class="skill-icon" style="background:rgba(139,107,255,0.12); color:var(--accent-2);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5m5 14V9m5 10V4m5 15v-7"/></svg>
             </div>
-
-            <div class="skill-card reveal">
-                <div class="skill-icon" style="color: var(--laser-pink);">📱</div>
-                <div class="skill-name">Mobile Development</div>
-                <div class="skill-list">
-                    Flutter • Dart<br>
-                    iOS & Android<br>
-                    State Management<br>
-                    Firebase<br>
-                    Native Integration
-                </div>
-            </div>
-
-            <div class="skill-card reveal">
-                <div class="skill-icon" style="color: var(--neon-yellow);">🧠</div>
-                <div class="skill-name">Machine Learning</div>
-                <div class="skill-list">
-                    TensorFlow<br>
-                    Scikit-learn<br>
-                    XGBoost<br>
-                    Neural Networks<br>
-                    Model Deployment
-                </div>
-            </div>
-
-            <div class="skill-card reveal">
-                <div class="skill-icon" style="color: var(--plasma-purple);">☁️</div>
-                <div class="skill-name">Cloud & DevOps</div>
-                <div class="skill-list">
-                    AWS • Azure<br>
-                    CI/CD Pipelines<br>
-                    PostgreSQL • Redis<br>
-                    System Architecture<br>
-                    Performance Tuning
-                </div>
-            </div>
-
-            <div class="skill-card reveal">
-                <div class="skill-icon" style="color: var(--electric-blue);">🐍</div>
-                <div class="skill-name">Data Science</div>
-                <div class="skill-list">
-                    Python • Pandas<br>
-                    NumPy • Matplotlib<br>
-                    Data Analysis<br>
-                    Jupyter<br>
-                    Feature Engineering
-                </div>
-            </div>
-
-            <div class="skill-card reveal">
-                <div class="skill-icon" style="color: var(--cyber-orange);">🎨</div>
-                <div class="skill-name">Frontend</div>
-                <div class="skill-list">
-                    Vue.js<br>
-                    JavaScript • HTML/CSS<br>
-                    Responsive Design<br>
-                    Streamlit<br>
-                    UI/UX Principles
-                </div>
-            </div>
+            <div class="skill-name">Data Science</div>
+          </div>
+          <div class="skill-tags">
+            <span>Pandas</span><span>NumPy</span><span>SQL</span><span>Jupyter</span><span>Feature Engineering</span>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- CONTACT SECTION -->
-    <section id="contact">
-        <div class="contact-container">
-            <div class="section-header reveal">
-                <h2 class="section-title">Establish Connection</h2>
-                <p class="section-subtitle">Let's build something extraordinary together</p>
-            </div>
-
-            <div class="contact-grid">
-                <a href="mailto:manavrajthakor01@gmail.com" style="text-decoration: none; color: inherit;">
-                    <div class="contact-card reveal">
-                        <div class="contact-icon" style="color: var(--electric-blue);">📧</div>
-                        <div class="contact-label">EMAIL</div>
-                        <div class="contact-info">
-                            <span class="contact-link">manavrajthakor01@gmail.com</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://www.linkedin.com/in/manavraj-thakor-0092b91bb/" target="_blank" style="text-decoration: none; color: inherit;">
-                    <div class="contact-card reveal">
-                        <div class="contact-icon" style="color: var(--laser-pink);">💼</div>
-                        <div class="contact-label">LINKEDIN</div>
-                        <div class="contact-info">
-                            <span class="contact-link">Connect with me</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://github.com/manavraj01" target="_blank" style="text-decoration: none; color: inherit;">
-                    <div class="contact-card reveal">
-                        <div class="contact-icon" style="color: var(--neon-yellow);">🚀</div>
-                        <div class="contact-label">GITHUB</div>
-                        <div class="contact-info">
-                            <span class="contact-link">@manavraj01</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-head reveal">
+        <span class="eyebrow">Contact</span>
+        <h2>Let's build something together</h2>
+        <p>Open to backend, ML, and systems engineering opportunities — reach out any time.</p>
+        <div class="hero-cta">
+          <a href="mailto:manavrajthakor01@gmail.com" class="btn btn-primary">
+            Email Me
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a href="./assets/resume.pdf" download class="btn btn-outline">Download Résumé</a>
         </div>
-    </section>
+      </div>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-links">
-            <a href="https://github.com/manavraj01" target="_blank" class="footer-link">GitHub</a>
-            <a href="https://www.linkedin.com/in/manavraj-thakor-0092b91bb/" target="_blank" class="footer-link">LinkedIn</a>
-        </div>
-        <div class="copyright">
-            © 2026 Manavraj Thakor • Engineered with precision and passion
-        </div>
-    </footer>
+      <div class="contact-grid reveal-group">
+        <a href="mailto:manavrajthakor01@gmail.com" class="contact-card reveal">
+          <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7L22 6"/></svg></div>
+          <div>
+            <div class="label">Email</div>
+            <div class="value">manavrajthakor01@gmail.com</div>
+          </div>
+        </a>
 
-    <script>
-        // HOLOGRAPHIC CURSOR
-        const cursor = document.querySelector('.holo-cursor');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
+        <a href="https://www.linkedin.com/in/manavraj-thakor-0092b91bb/" target="_blank" rel="noopener" class="contact-card reveal">
+          <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/><path d="M10 9v12M10 13.5c0-2.5 2-4.5 4.5-4.5S19 11 19 13.5V21h-4.5v-7c0-.8-.7-1.5-1.5-1.5s-1.5.7-1.5 1.5v7H10"/></svg></div>
+          <div>
+            <div class="label">LinkedIn</div>
+            <div class="value">Connect with me</div>
+          </div>
+        </a>
 
-        // INITIATE CONTACT ANIMATION
-        const initiateContactBtn = document.getElementById('initiateContact');
-        const connectingOverlay = document.getElementById('connectingOverlay');
-        
-        initiateContactBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Add shake effect to body
-            document.body.classList.add('body-shake');
-            
-            // Show connecting overlay after shake
-            setTimeout(() => {
-                connectingOverlay.classList.add('active');
-            }, 200);
-            
-            // Navigate to contact section after connection animation
-            setTimeout(() => {
-                connectingOverlay.classList.remove('active');
-                document.body.classList.remove('body-shake');
-                document.querySelector('#contact').scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 2500);
-        });
+        <a href="https://github.com/manavraj01" target="_blank" rel="noopener" class="contact-card reveal">
+          <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></div>
+          <div>
+            <div class="label">GitHub</div>
+            <div class="value">@manavraj01</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
 
-        // MATRIX RAIN EFFECT
-        const canvas = document.getElementById('matrix');
-        const ctx = canvas.getContext('2d');
+</main>
 
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+<!-- FOOTER -->
+<footer class="container">
+  <div class="copyright">© <span id="year">2026</span> Manavraj Thakor</div>
+  <div class="footer-links">
+    <a href="https://github.com/manavraj01" target="_blank" rel="noopener" class="footer-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+      GitHub
+    </a>
+    <a href="https://www.linkedin.com/in/manavraj-thakor-0092b91bb/" target="_blank" rel="noopener" class="footer-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/><path d="M10 9v12M10 13.5c0-2.5 2-4.5 4.5-4.5S19 11 19 13.5V21h-4.5v-7c0-.8-.7-1.5-1.5-1.5s-1.5.7-1.5 1.5v7H10"/></svg>
+      LinkedIn
+    </a>
+  </div>
+</footer>
 
-        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
-        const fontSize = 14;
-        const columns = canvas.width / fontSize;
-        const drops = Array(Math.floor(columns)).fill(1);
-
-        function drawMatrix() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            ctx.fillStyle = '#00d4ff';
-            ctx.font = fontSize + 'px monospace';
-
-            for (let i = 0; i < drops.length; i++) {
-                const text = chars[Math.floor(Math.random() * chars.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
-        }
-
-        setInterval(drawMatrix, 50);
-
-        // SMOOTH SCROLLING
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href === '#contact' && this.id === 'initiateContact') {
-                    return; // Let the contact animation handle it
-                }
-                e.preventDefault();
-                const target = document.querySelector(href);
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-        // SCROLL REVEAL ANIMATION
-        const reveals = document.querySelectorAll('.reveal');
-        
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        reveals.forEach(reveal => {
-            revealObserver.observe(reveal);
-        });
-
-        // RESIZE HANDLER
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-    </script>
+<script src="assets/js/main.js"></script>
 </body>
 </html>
